@@ -11,13 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141203193059) do
+ActiveRecord::Schema.define(version: 20141209192258) do
 
   create_table "vinos", force: true do |t|
     t.string  "nombre"
     t.integer "id_bodega"
     t.integer "precio"
-    t.integer "envejecimiento"
     t.integer "añada"
     t.integer "id_envejecimiento"
     t.integer "meses_envejecimiento"
