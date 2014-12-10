@@ -2,12 +2,12 @@
   .container
     .row
       .video_large_cover.col-sm-7.col-sm-offset-1
-        %img(src="#{@vino.large_cover}")
+        %img(src="#{@vino.img_botella_big}")
       .video_info.col-sm-3
         %header
           %h3= @vino.nombre
           %span Rating: 4.5/5.0
-        %p= @video.description
+        %p= @vino.descripcion
         .actions
           %a.btn.btn-primary(href="") Watch Now
           %a.btn.btn-default(href="") + My Queue
@@ -18,7 +18,7 @@
       %form
         %fieldset
           .form-group
-            %label Rate this video
+            %label Valora este vino
             .row
               .col-sm-3
                 %select.form-control(name="")
