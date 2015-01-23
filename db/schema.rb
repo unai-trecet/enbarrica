@@ -11,20 +11,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141209192258) do
+ActiveRecord::Schema.define(version: 20150123163237) do
+
+  create_table "bodegas", force: true do |t|
+    t.string  "nombre"
+    t.string  "web"
+    t.string  "email"
+    t.string  "direccion"
+    t.string  "cp"
+    t.string  "tlf1"
+    t.string  "tlf2"
+    t.integer "do_id"
+    t.integer "provincia_id"
+    t.text    "descripcion"
+  end
 
   create_table "vinos", force: true do |t|
     t.string  "nombre"
-    t.integer "id_bodega"
     t.integer "precio"
     t.integer "añada"
-    t.integer "id_envejecimiento"
     t.integer "meses_envejecimiento"
-    t.integer "id_tipo_uva1"
-    t.integer "id_tipo_uva_2"
-    t.integer "id_tipo_uva_3"
-    t.integer "id_tipo_uva_4"
-    t.integer "id_tipo_uva1_5"
+    t.integer "bodega_id"
+    t.integer "envejecimiento_id"
     t.text    "descripcion"
     t.decimal "valoracion"
     t.string  "img_botella_small"

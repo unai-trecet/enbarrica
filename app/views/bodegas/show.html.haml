@@ -2,10 +2,10 @@
   .container
     .row
       .video_large_cover.col-sm-7.col-sm-offset-1
-        %img(src="#{@vino.img_botella_big}")
+        %img(src="#{@bodega.img_botella_big}")
       .video_info.col-sm-3
         %header
-          %h3= @vino.nombre
+          %h3= @bodega.nombre
           %span Rating: 4.5/5.0
           %p Bodega: #{ link_to @vino.bodega.nombre, bodega_path(@vino.bodega)}
         %p= @vino.descripcion
