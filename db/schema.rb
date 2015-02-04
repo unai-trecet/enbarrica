@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150123163237) do
+ActiveRecord::Schema.define(version: 20150204183728) do
 
   create_table "bodegas", force: true do |t|
     t.string  "nombre"
@@ -21,9 +21,18 @@ ActiveRecord::Schema.define(version: 20150123163237) do
     t.string  "cp"
     t.string  "tlf1"
     t.string  "tlf2"
-    t.integer "do_id"
+    t.integer "denominacion_id"
     t.integer "provincia_id"
     t.text    "descripcion"
+    t.string  "img1"
+  end
+
+  create_table "denominaciones", id: false, force: true do |t|
+    t.integer "id",                    null: false
+    t.string  "nombre"
+    t.text    "descripcion"
+    t.text    "historia"
+    t.text    "descripcion_tipos_uva"
   end
 
   create_table "vinos", force: true do |t|
