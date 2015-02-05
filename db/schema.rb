@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150204183728) do
+ActiveRecord::Schema.define(version: 20150205164030) do
 
   create_table "bodegas", force: true do |t|
     t.string  "nombre"
@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 20150204183728) do
     t.decimal "valoracion"
     t.string  "img_botella_small"
     t.string  "img_botella_big"
+    t.integer "denominacion_id"
   end
 
 end
