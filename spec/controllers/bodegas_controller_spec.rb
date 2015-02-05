@@ -11,7 +11,7 @@ describe BodegasController do
 
     it "sets @bodegas" do
       bodega = Fabricate :bodega
-      get :show, id:bodega.id
+      get :show, id: bodega.id
 
       expect(assigns :bodega).to eq(bodega)
     end
