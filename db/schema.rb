@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150205182414) do
+ActiveRecord::Schema.define(version: 20150205184749) do
 
   create_table "bodegas", force: true do |t|
     t.string  "nombre"
@@ -42,6 +42,16 @@ ActiveRecord::Schema.define(version: 20150205182414) do
     t.text   "historia"
     t.text   "caracteristicas"
   end
+
+  create_table "uso_uvas_vinos", force: true do |t|
+    t.integer  "vino_id"
+    t.integer  "tipo_uva_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "uso_uvas_vinos", ["tipo_uva_id"], name: "index_uso_uvas_vinos_on_tipo_uva_id"
+  add_index "uso_uvas_vinos", ["vino_id"], name: "index_uso_uvas_vinos_on_vino_id"
 
   create_table "vinos", force: true do |t|
     t.string  "nombre"
