@@ -9,7 +9,10 @@
           %span Rating: 4.5/5.0
           %p Bodega: #{ link_to @vino.bodega.nombre, bodega_path(@vino.bodega)}
           %p Año: #{ @vino.añada }
-          %p Envejecimiento: #{ @vino.añada }
+          - if !@vino.envejecimiento.blank?
+            %p Envejecimiento: #{ link_to @vino.envejecimiento.nombre, envejecimiento_path(@vino.envejecimiento.id) }
+          - if !@vino.meses_envejecimiento.blank?
+            %p Meses en barrica: #{ @vino.meses_envejecimiento }
           %p Denominación de origen: #{ link_to @vino.denominacion.nombre, denominacione_path(@vino.denominacion) }
           %p Tipos de uva: #{ raw @vino.tipo_uvas.collect { |uva| link_to uva.nombre, tipo_uva_path(uva.id) }.join", " }
 
