@@ -3,4 +3,5 @@ class Denominacion < ActiveRecord::Base
 
   has_many :bodegas
   has_many :vinos
+
 end

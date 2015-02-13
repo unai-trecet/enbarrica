@@ -3,4 +3,5 @@ Enbarrica::Application.routes.draw do
   resources :vinos
   resources :bodegas
   resources :denominaciones
+  resources :tipo_uvas
 end

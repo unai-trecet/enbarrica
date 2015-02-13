@@ -8,7 +8,11 @@
           %h3= @vino.nombre
           %span Rating: 4.5/5.0
           %p Bodega: #{ link_to @vino.bodega.nombre, bodega_path(@vino.bodega)}
-          %p Bodega: #{ link_to @vino.denominacion.nombre, denominacione_path(@vino.denominacion) }
+          %p Año: #{ @vino.añada }
+          %p Envejecimiento: #{ @vino.añada }
+          %p Denominación de origen: #{ link_to @vino.denominacion.nombre, denominacione_path(@vino.denominacion) }
+          %p Tipos de uva: #{ raw @vino.tipo_uvas.collect { |uva| link_to uva.nombre, tipo_uva_path(uva.id) }.join", " }
+
         %p= @vino.descripcion
         .actions
           %a.btn.btn-primary(href="") Valorar vino
