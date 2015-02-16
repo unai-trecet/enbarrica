@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150216164243) do
+ActiveRecord::Schema.define(version: 20150216181639) do
 
   create_table "bodegas", force: true do |t|
     t.string   "nombre"
@@ -51,6 +51,14 @@ ActiveRecord::Schema.define(version: 20150216164243) do
     t.text     "descrpcion"
     t.text     "historia"
     t.text     "caracteristicas"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "users", force: true do |t|
+    t.string   "email"
+    t.string   "password_digest"
+    t.string   "full_name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
