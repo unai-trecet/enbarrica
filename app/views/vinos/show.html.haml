@@ -15,6 +15,7 @@
             %p Meses en barrica: #{ @vino.meses_envejecimiento }
           %p Denominación de origen: #{ link_to @vino.denominacion.nombre, denominacione_path(@vino.denominacion) }
           %p Tipos de uva: #{ raw @vino.tipo_uvas.collect { |uva| link_to uva.nombre, tipo_uva_path(uva.id) }.join", " }
+          %p Año: #{ @vino.precio }
 
         %p= @vino.descripcion
         .actions

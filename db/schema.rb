@@ -11,28 +11,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150213190627) do
+ActiveRecord::Schema.define(version: 20150216164243) do
 
   create_table "bodegas", force: true do |t|
-    t.string  "nombre"
-    t.string  "web"
-    t.string  "email"
-    t.string  "direccion"
-    t.string  "cp"
-    t.string  "tlf1"
-    t.string  "tlf2"
-    t.integer "denominacion_id"
-    t.integer "provincia_id"
-    t.text    "descripcion"
-    t.string  "img1"
+    t.string   "nombre"
+    t.string   "web"
+    t.string   "email"
+    t.string   "direccion"
+    t.string   "cp"
+    t.string   "tlf1"
+    t.string   "tlf2"
+    t.integer  "denominacion_id"
+    t.integer  "provincia_id"
+    t.text     "descripcion"
+    t.string   "img1"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "denominaciones", force: true do |t|
-    t.string "nombre"
-    t.text   "descripcion"
-    t.text   "historia"
-    t.text   "descripcion_tipos_uva"
-    t.string "img1"
+    t.string   "nombre"
+    t.text     "descripcion"
+    t.text     "historia"
+    t.text     "descripcion_tipos_uva"
+    t.string   "img1"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "envejecimientos", force: true do |t|
@@ -42,11 +46,13 @@ ActiveRecord::Schema.define(version: 20150213190627) do
   end
 
   create_table "tipo_uvas", force: true do |t|
-    t.string "nombre"
-    t.string "img1"
-    t.text   "descrpcion"
-    t.text   "historia"
-    t.text   "caracteristicas"
+    t.string   "nombre"
+    t.string   "img1"
+    t.text     "descrpcion"
+    t.text     "historia"
+    t.text     "caracteristicas"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "uso_uvas_vinos", force: true do |t|
@@ -60,17 +66,19 @@ ActiveRecord::Schema.define(version: 20150213190627) do
   add_index "uso_uvas_vinos", ["vino_id"], name: "index_uso_uvas_vinos_on_vino_id"
 
   create_table "vinos", force: true do |t|
-    t.string  "nombre"
-    t.integer "precio"
-    t.integer "añada"
-    t.integer "meses_envejecimiento"
-    t.integer "bodega_id"
-    t.integer "envejecimiento_id"
-    t.text    "descripcion"
-    t.decimal "valoracion"
-    t.string  "img_botella_small"
-    t.string  "img_botella_big"
-    t.integer "denominacion_id"
+    t.string   "nombre"
+    t.integer  "precio"
+    t.integer  "añada"
+    t.integer  "meses_envejecimiento"
+    t.integer  "bodega_id"
+    t.integer  "envejecimiento_id"
+    t.text     "descripcion"
+    t.decimal  "valoracion"
+    t.string   "img_botella_small"
+    t.string   "img_botella_big"
+    t.integer  "denominacion_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end
