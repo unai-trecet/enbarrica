@@ -12,6 +12,7 @@ gem 'fabrication'
 gem 'faker'
 gem 'haml-rails'
 gem 'bootstrap-sass'
+gem 'bcrypt'
 
 group :doc do
   gem 'sdoc', require: false
