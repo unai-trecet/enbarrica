@@ -11,8 +11,9 @@ gem 'jbuilder'
 gem 'fabrication'
 gem 'faker'
 gem 'haml-rails'
-gem 'bootstrap-sass'
 gem 'bcrypt'
+gem 'bootstrap-sass'
+gem 'bootstrap_form'
 
 group :doc do
   gem 'sdoc', require: false

@@ -1,0 +1,16 @@
+%section.register.container
+  .row
+    .col-sm-10.col-sm-offset-1
+      = bootstrap_form_for @user, html: { class: "form-horizontal", id: "payment-form" } do |f|
+        %header
+          %h1 Register
+        %fieldset
+          = f.text_field :full_name, label: "Nombre"        
+          = f.email_field :email, label: "Correo electrónico"
+          = f.password_field :password, label: "Contraseña"
+          = f.password_field :password_confirmation, label: "Confirmación contraseña"
+
+
+        %fieldset.actions.control-group.col-sm-offset-2
+          .controls
+            %input(type="submit" value="Sign Up" class="btn btn-default")
