@@ -7,6 +7,7 @@ Enbarrica::Application.routes.draw do
   
   resources :users
   get 'register', to: 'users#new'
+  get 'sign_out', to: 'sessions#destroy'
 
   resources :vinos
   resources :bodegas

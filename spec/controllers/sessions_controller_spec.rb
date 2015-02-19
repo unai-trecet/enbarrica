@@ -52,5 +52,24 @@ describe SessionsController do
         expect(flash[:error]).to be_present
       end
     end
+
+    describe  "GET destroy" do
+      
+      it "redirect to root page" do
+        get :destroy
+        expect(response).to redirect_to root_path
+      end
+
+      it "sets session to nil" do
+        paquito = Fabricate :user
+        session[:user_id] = paquito.id
+
+        get :destroy
+
+        expect(session[:user_id]).to be_nil
+      end
+
+
+    end
   end
 end
