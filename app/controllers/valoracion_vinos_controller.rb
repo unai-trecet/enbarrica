@@ -1,0 +1,4 @@
+class ValoracionVinos < ApplicationController
+
+
+end

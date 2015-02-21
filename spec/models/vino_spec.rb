@@ -5,6 +5,7 @@ describe Vino do
   it { should belong_to(:bodega) }
   it { should belong_to(:denominacion) }
   it { should belong_to(:envejecimiento) }
+  
   it { should have_many(:tipo_uvas) }
-
+  it { should have_many(:valoracion_vinos) }
 end

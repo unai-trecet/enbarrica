@@ -38,23 +38,22 @@ describe SessionsController do
       end
 
       it "does not set the session with an incorrect password" do
-        post :create, email: paquito.email, password: "passqordmal"
+        post :create, email: paquito.email, password: "passwordmal"
         expect(session[:user_id]).to be_nil
       end
 
       it "redirect to sign_in page" do
-        post :create, email: paquito.email, password: "passqordmal"
+        post :create, email: paquito.email, password: "passwordmal"
         expect(response).to redirect_to sign_in_path
       end
 
       it "sets the error message" do
-        post :create, email: paquito.email, password: "passqordmal"
+        post :create, email: paquito.email, password: "passwordmal"
         expect(flash[:error]).to be_present
       end
     end
 
-    describe  "GET destroy" do
-      
+    describe  "GET destroy" do      
       it "redirect to root page" do
         get :destroy
         expect(response).to redirect_to root_path
@@ -68,8 +67,6 @@ describe SessionsController do
 
         expect(session[:user_id]).to be_nil
       end
-
-
     end
   end
 end
