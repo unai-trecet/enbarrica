@@ -6,5 +6,5 @@ class Vino < ActiveRecord::Base
   has_many :uso_uvas_vinos
   has_many :tipo_uvas, through: :uso_uvas_vinos  
 
-  has_many :valoracion_vinos
+  has_many :comentarios, as: :comentable
 end

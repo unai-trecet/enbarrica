@@ -8,5 +8,5 @@ describe User do
 
   it { should validate_uniqueness_of(:email) }
 
-  it { should have_many(:valoracion_vinos) } 
+  it { should have_many(:comentarios) } 
 end
