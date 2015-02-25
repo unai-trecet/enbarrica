@@ -5,4 +5,5 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :email
 
   has_many :comentarios, as: :comentable
+  has_many :ratings
 end
