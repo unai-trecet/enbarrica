@@ -1,3 +1,4 @@
 class Comentario < ActiveRecord::Base
-  belongs_to :comentable_id, polymorphic: true
+  belongs_to :vino
+  belongs_to :user
 end

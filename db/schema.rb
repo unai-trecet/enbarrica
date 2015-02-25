@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150221131340) do
+ActiveRecord::Schema.define(version: 20150225172934) do
 
   create_table "bodegas", force: true do |t|
     t.string   "nombre"
@@ -35,7 +35,10 @@ ActiveRecord::Schema.define(version: 20150221131340) do
     t.string   "comentable_type"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "rating_id"
   end
+
+  add_index "comentarios", ["rating_id"], name: "index_comentarios_on_rating_id"
 
   create_table "denominaciones", force: true do |t|
     t.string   "nombre"
@@ -52,6 +55,17 @@ ActiveRecord::Schema.define(version: 20150221131340) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "ratings", force: true do |t|
+    t.integer  "comentario_id"
+    t.integer  "user_id"
+    t.float    "valoracion"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "ratings", ["comentario_id"], name: "index_ratings_on_comentario_id"
+  add_index "ratings", ["user_id"], name: "index_ratings_on_user_id"
 
   create_table "tipo_uvas", force: true do |t|
     t.string   "nombre"
