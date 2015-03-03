@@ -1,0 +1,11 @@
+= bootstrap_form_for @comentario do |f|
+  %header
+    %h1 Valora este vino
+  %fieldset
+    = f.hidden_field :comentable_id, value: params[:id]
+    = f.hidden_field :comentable_type, value: params[:type]
+    = f.text_area :comentario, size: "60x12"
+
+  %fieldset.form-group.actions.clearfix
+    %input(type="submit" value="Submit" class="btn")
+    %a(href="") Cancel

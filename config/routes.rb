@@ -14,4 +14,5 @@ Enbarrica::Application.routes.draw do
   resources :denominaciones
   resources :tipo_uvas, only: [:show]
   resources :envejecimientos, only: [:show]
+  resources :comentarios, only: [:new, :create, :update, :destroy]
 end

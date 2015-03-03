@@ -18,14 +18,15 @@
           %p Año: #{ @vino.precio.to_f / 100 } €
 
         %p Descripción: #{ @vino.descripcion }
-        .actions
-          %a.btn.btn-primary(href="") Valorar vino
-          %a.btn.btn-default(href="") + Mis listas
+        - if current_user.present?
+          .actions
+            = button_to "Valorar vino", new_comentario_path, method: "get", params: { id: @vino.id, type: "vino" }, class: "btn" 
+            %a.btn.btn-default(href="") + Mis listas
 
 %section.reviews.container
   .row
     .col-sm-10.col-sm-offset-1
-      = render "shared/valoracion"
+      / = render "comentarios/form"
       %header
         %h3 User Reviews (253)
       %ul
