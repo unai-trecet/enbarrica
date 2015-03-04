@@ -31,30 +31,31 @@ describe ComentariosController do
   describe "POST create" do
     context "for authenticated users" do 
       let(:user) { Fabricate :user }
+      let(:estacada) { Fabricate :vino }
+      let(:opinion)  { Fabricate :comentario }
 
-      before { session[:user_id] = user.id }       
+      before do
+       session[:user_id] = user.id
+       post :create, comentario: { comentable_id: estacada.id, comentable_type: "vino", comentario: opinion.comentario, user_id: user.id }
+      end      
       
       context "with valid input" do
         context "commenting a vino" do
           it "redirects to vino show page" do
-            estacada = Fabricate :vino
-            opinion = Fabricate :comentario
-
-            post :create, comentable_id: estacada.id, comentable_type: "vino", comentario: opinion.comentario
             expect(response).to redirect_to estacada     
           end
 
-          # it "creates a comentario" do
-          #   estacada = Fabricate :vino
-          #   opinion = Fabricate :comentario
+          it "creates a comentario" do
+            expect(Comentario.count).to eq(2)
+          end
 
-          #   post :create, id: estacada.id, type
-          #   expect(Comentario.last.comentario).to eq(opinion.comentario)
-          # end
+          it "creates a comentario assciated with the current user" do
+            expect(Comentario.last.user).to eq(user)
+          end
 
-          it "creates a comentario assciated with the current user"
-          it "creates a comentario associated with an object of the specified type"
-          it "creates a comentario associated with the object specified by the id passed"
+          it "creates a comentario associated with a vino object specified by the id" do 
+            expect(Comentario.last).to eq(estacada.comentarios.last)
+          end
         end
 
 

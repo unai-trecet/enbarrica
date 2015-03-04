@@ -4,6 +4,7 @@
   %fieldset
     = f.hidden_field :comentable_id, value: params[:id]
     = f.hidden_field :comentable_type, value: params[:type]
+    = f.hidden_field :user_id, value: current_user.id
     = f.text_area :comentario, size: "60x12"
 
   %fieldset.form-group.actions.clearfix
