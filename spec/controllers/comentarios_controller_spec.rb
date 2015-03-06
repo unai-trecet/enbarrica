@@ -30,17 +30,16 @@ describe ComentariosController do
   
   describe "POST create" do
     context "for authenticated users" do 
-      let(:user) { Fabricate :user }
-      let(:estacada) { Fabricate :vino }
-      let(:opinion)  { Fabricate :comentario }
 
-      before do
-       session[:user_id] = user.id
-       post :create, comentario: { comentable_id: estacada.id, comentable_type: "vino", comentario: opinion.comentario, user_id: user.id }
-      end      
-      
+      let(:user) { Fabricate :user }
+      before { session[:user_id] = user.id }
+
       context "with valid input" do
         context "commenting a vino" do
+
+          let(:estacada) { Fabricate :vino }
+          before { post :create, comentario: { comentable_id: estacada.id, comentable_type: "Vino", comentario: "Paquito es muy brasas.", user_id: user.id } }      
+          
           it "redirects to vino show page" do
             expect(response).to redirect_to estacada     
           end
@@ -57,11 +56,22 @@ describe ComentariosController do
             expect(Comentario.last).to eq(estacada.comentarios.last)
           end
         end
-
-
       end
 
       context "with invalid input" do
+
+        let(:estacada) { Fabricate :vino }
+        before { post :create, comentario: { comentable_id: estacada.id, comentable_type: "Vino", user_id: user.id } }
+
+        it "does not create a comentario" do
+          expect(Comentario.count).to eq(0)
+        end
+
+        it "renders create template" do
+          expect(response).to render_template :create
+        end
+        
+        it "sets error message"
 
       end
     end

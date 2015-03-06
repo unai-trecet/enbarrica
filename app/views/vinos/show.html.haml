@@ -20,7 +20,7 @@
         %p Descripción: #{ @vino.descripcion }
         - if current_user.present?
           .actions
-            = button_to "Valorar vino", new_comentario_path, method: "get", params: { id: @vino.id, type: "vino" }, class: "btn" 
+            = button_to "Valorar vino", new_comentario_path, method: "get", params: { id: @vino.id, type: "Vino" }, class: "btn" 
             %a.btn.btn-default(href="") + Mis listas
 
 %section.reviews.container

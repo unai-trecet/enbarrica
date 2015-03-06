@@ -6,10 +6,13 @@ class ComentariosController < ApplicationController
   end
 
   def create
-    commented_object = find_commented_object 
-    comentario = Comentario.create(comentario_params)    
-    comentario.update_attribute(:comentable, commented_object)
-    redirect_to commented_object
+    commented_object = find_commented_object
+    
+    if Comentario.create(comentario_params)    
+       
+      comentario.update_attribute(:comentable, commented_object)
+      redirect_to commented_object
+    end
   end
 
   private
@@ -20,7 +23,7 @@ class ComentariosController < ApplicationController
 
   def find_commented_object
     commented_object = case params["comentario"]["comentable_type"]
-             when "vino"
+             when "Vino"
                Vino.find(params["comentario"]["comentable_id"])
              end
   end
