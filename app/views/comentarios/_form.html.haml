@@ -1,6 +1,4 @@
-= bootstrap_form_for @comentario do |f|
-  %header
-    %h1 Valora este vino
+= bootstrap_form_for @comentario, remote: true do |f|
   %fieldset
     = f.hidden_field :comentable_id, value: params[:id]
     = f.hidden_field :comentable_type, value: params[:type]
