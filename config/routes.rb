@@ -9,19 +9,17 @@ Enbarrica::Application.routes.draw do
   get 'register', to: 'users#new'
   get 'sign_out', to: 'sessions#destroy'
 
-  resources :vinos do
-    resources :comentarios, only:  [:index, :new, :create]
+  resources :comentarios
+
+  concern :comentable do
+    resources :comentarios
   end
 
-  resources :bodegas do
-    resources :comentarios, only:  [:index, :new, :create]
-  end
+  resources :vinos, concerns: :comentable
+  resources :bodegas, concerns: :comentable
+  resources :denominaciones, only: [:show], concerns: :comentable
 
-  resources :denominaciones, only: [:show] do
-    resources :comentarios, only:  [:index, :new, :create]
-  end
-
-  resources :comentarios, only:  [:show, :edit, :update, :destroy]
+  
   resources :tipo_uvas, only: [:show]
   resources :envejecimientos, only: [:show]
 end
