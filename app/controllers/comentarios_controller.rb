@@ -10,7 +10,7 @@ class ComentariosController < ApplicationController
     commented_object = find_commented_object
     
     if Comentario.create(comentario_params)           
-      comentario.update_attribute(:comentable, commented_object)
+      # Comentario.last..update_attribute(:comentable, commented_object)
       redirect_to commented_object
     end
   end
