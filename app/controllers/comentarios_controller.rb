@@ -8,11 +8,8 @@ class ComentariosController < ApplicationController
 
   def create
     commented_object = find_commented_object
-    
-    if Comentario.create(comentario_params)           
-      # Comentario.last..update_attribute(:comentable, commented_object)
-      redirect_to commented_object
-    end
+    commented_object.comentarios.create(comentario_params)
+    redirect_to commented_object
   end
 
   private

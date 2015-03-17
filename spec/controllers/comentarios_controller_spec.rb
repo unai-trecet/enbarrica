@@ -2,32 +2,6 @@ require "rails_helper"
 
 describe ComentariosController do 
   
-  describe "GET new" do
-    context "for authenticated users" do     
-      let(:user) { Fabricate :user }
-
-      before do
-        session[:user_id] = user.id 
-        get :new
-      end
-
-      it "renders new template" do         
-        expect(response).to render_template :new
-      end
-
-      it "sets @comentario variable" do
-        expect(assigns :comentario).to be_a Comentario
-      end
-    end  
-
-    context "for unauthenticated users" do
-      it "redirects to sign_in page" do
-        get :new 
-        expect(response).to redirect_to sign_in_path
-      end
-    end
-  end  
-  
   describe "POST create" do
     context "for authenticated users" do 
 
@@ -35,7 +9,7 @@ describe ComentariosController do
       before { session[:user_id] = user.id }
 
       context "with valid input" do
-        context "commenting a vino" do
+        context "commenting vino" do
 
           let(:estacada) { Fabricate :vino }
           before { post :create, comentario: { comentable_id: estacada.id, comentable_type: "Vino", comentario: "Paquito es muy brasas.", user_id: user.id } }      
@@ -45,7 +19,7 @@ describe ComentariosController do
           end
 
           it "creates a comentario" do
-            expect(Comentario.count).to eq(2)
+            expect(Comentario.count).to eq(1)
           end
 
           it "creates a comentario assciated with the current user" do
