@@ -5,8 +5,9 @@ Enbarrica::Application.routes.draw do
   resources :sessions, only: [:create]
   get 'sign_in', to: 'sessions#new'
 
+  resources :comentarios
   concern :comentable do
-    resources :comentarios, only: [:create, :edit, :delete]
+    resources :comentarios, only: [:new, :create, :edit, :delete]
   end
 
   resources :vinos, concerns: :comentable

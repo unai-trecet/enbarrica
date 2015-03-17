@@ -2,6 +2,35 @@ require "rails_helper"
 
 describe ComentariosController do 
   
+  describe "GET new" do
+    context "for authenticated users" do     
+      let(:user) { Fabricate :user }
+
+      before { session[:user_id] = user.id }
+
+      it "sets @comentario variable" do
+        get :new
+        expect(assigns :comentario).to be_a Comentario
+      end
+
+      context "vino as commented object" do
+        it "sets commented_object variable" do
+          estacada = Fabricate :vino
+
+          get :new, vino_id: estacada.id
+          expect(assigns :commented_object).to eq(estacada)
+        end
+      end
+    end  
+
+    context "for unauthenticated users" do
+      it "redirects to sign_in page" do
+        get :new 
+        expect(response).to redirect_to sign_in_path
+      end
+    end
+  end  
+  
   describe "POST create" do
     context "for authenticated users" do 
 

@@ -3,6 +3,7 @@ class ComentariosController < ApplicationController
   respond_to :html, :js
 
   def new
+    @commented_object = find_commented_object
     @comentario = Comentario.new
   end
 
@@ -19,9 +20,8 @@ class ComentariosController < ApplicationController
   end
 
   def find_commented_object
-    commented_object = case params["comentario"]["comentable_type"]
-             when "Vino"
-               Vino.find(params["comentario"]["comentable_id"])
-             end
+    if params[:vino_id]
+      Vino.find(params[:vino_id])
+    end
   end
 end

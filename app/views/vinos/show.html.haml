@@ -20,7 +20,7 @@
         %p Descripción: #{ @vino.descripcion }
         - if current_user.present?
           .actions
-            = button_to new_vino_comentario_path(@vino, Comentario.new), remote: true, method: "get" do
+            = button_to new_vino_comentario_path(@vino), remote: true, method: "get" do
               .btn-btn-default Valorar vino
 
             %a.btn.btn-default(href="") + Mis listas
