@@ -1,27 +1,30 @@
 class ComentariosController < ApplicationController
-  before_filter :require_user
+  before_filter :require_user, :get_commented_object
+  before_action
   respond_to :html, :js
 
   def new
-    @commented_object = find_commented_object
-    @comentario = Comentario.new
+    @comentario = @comentable.comentarios.new
   end
 
   def create
-    commented_object = find_commented_object
-    commented_object.comentarios.create(comentario_params)
-    redirect_to commented_object
+    @comentario = @comentable.comentarios.new(comentario_params)
+    @comentario.update_attribute(:user_id, current_user.id)
+    @comentario.save
+    
+    redirect_to @comentable
   end
 
   private
 
   def comentario_params
-    params.require(:comentario).permit(:comentario, :user_id)
+    params.require(:comentario).permit(:comentario)
   end
 
-  def find_commented_object
+  def get_commented_object
+    # binding.pry
     if params[:vino_id]
-      Vino.find(params[:vino_id])
+      @comentable = Vino.find(params[:vino_id])
     end
   end
 end

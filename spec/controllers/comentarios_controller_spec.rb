@@ -8,18 +8,19 @@ describe ComentariosController do
 
       before { session[:user_id] = user.id }
 
-      it "sets @comentario variable" do
-        get :new
-        expect(assigns :comentario).to be_a Comentario
-      end
-
       context "vino as commented object" do
-        it "sets commented_object variable" do
-          estacada = Fabricate :vino
 
-          get :new, vino_id: estacada.id
-          expect(assigns :commented_object).to eq(estacada)
+        let(:estacada) { estacada = Fabricate :vino }
+
+        before { get :new, vino_id: estacada.id }
+
+        it "sets @comentable variable equal to the vino passed by" do          
+          expect(assigns :comentable).to eq(estacada)
         end
+
+        it "sets @comentario variable" do
+          expect(assigns :comentario).to be_a Comentario
+        end        
       end
     end  
 
@@ -41,7 +42,8 @@ describe ComentariosController do
         context "commenting vino" do
 
           let(:estacada) { Fabricate :vino }
-          before { post :create, comentario: { comentable_id: estacada.id, comentable_type: "Vino", comentario: "Paquito es muy brasas.", user_id: user.id } }      
+
+          before { post :create, comentario: { comentario: "Paquito es muy brasas." }, vino_id: estacada.id }
           
           it "redirects to vino show page" do
             expect(response).to redirect_to estacada     
@@ -64,7 +66,7 @@ describe ComentariosController do
       context "with invalid input" do
 
         let(:estacada) { Fabricate :vino }
-        before { post :create, comentario: { comentable_id: estacada.id, comentable_type: "Vino", user_id: user.id } }
+        before { post :create, user_id: user.id }
 
         it "does not create a comentario" do
           expect(Comentario.count).to eq(0)

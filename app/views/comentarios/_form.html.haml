@@ -1,8 +1,5 @@
-= bootstrap_form_for [@commented_object, @comentario], remote: true do |f|
+= bootstrap_form_for [@comentable, @comentario], remote: true do |f|
   %fieldset
-    / = f.hidden_field :comentable_id, value: @commented_object.id
-    / = f.hidden_field :comentable_type, value: @commented_object.class.name
-    / = f.hidden_field :user_id, value: current_user.id
     = f.text_area :comentario, size: "60x12"
 
   %fieldset.form-group.actions.clearfix
