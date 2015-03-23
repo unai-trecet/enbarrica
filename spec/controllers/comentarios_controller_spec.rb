@@ -44,7 +44,7 @@ describe ComentariosController do
           let(:estacada) { Fabricate :vino }
 
           before { post :create, comentario: { comentario: "Paquito es muy brasas." }, vino_id: estacada.id }
-          
+
           it "redirects to vino show page" do
             expect(response).to redirect_to estacada     
           end
@@ -52,31 +52,33 @@ describe ComentariosController do
           it "creates a comentario" do
             expect(Comentario.count).to eq(1)
           end
-
-          it "creates a comentario assciated with the current user" do
-            expect(Comentario.last.user).to eq(user)
+          
+          it "creates a comentario associated with a vino object specified by the id" do 
+            expect(Comentario.last.comentable).to eq(estacada)
           end
 
-          it "creates a comentario associated with a vino object specified by the id" do 
-            expect(Comentario.last).to eq(estacada.comentarios.last)
+          it "creates a comentario associated with the current user" do
+            expect(estacada.comentarios.last.user).to eq(user)
           end
         end
       end
 
       context "with invalid input" do
+        context "commenting vino" do
 
-        let(:estacada) { Fabricate :vino }
-        before { post :create, user_id: user.id }
+          let(:estacada) { Fabricate :vino }
+          before { post :create, comentario: { comentario: "" }, vino_id: estacada.id }
 
-        it "does not create a comentario" do
-          expect(Comentario.count).to eq(0)
+          it "does not create a comentario" do
+            expect(Comentario.count).to eq(0)
+          end
+
+          it "renders commented vino's show template" do
+            expect(response).to render_template "vinos/show"
+          end
+          
+          it "sets error message"
         end
-
-        it "renders create template" do
-          expect(response).to render_template :create
-        end
-        
-        it "sets error message"
 
       end
     end

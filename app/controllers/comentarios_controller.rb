@@ -9,10 +9,12 @@ class ComentariosController < ApplicationController
 
   def create
     @comentario = @comentable.comentarios.new(comentario_params)
-    @comentario.update_attribute(:user_id, current_user.id)
-    @comentario.save
-    
-    redirect_to @comentable
+    @comentario.user = current_user
+    if @comentario.save
+      redirect_to @comentable
+    else
+      render "vinos/show"
+    end    
   end
 
   private
