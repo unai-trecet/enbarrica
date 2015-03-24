@@ -1,4 +1,12 @@
 = bootstrap_form_for [@comentable, @comentario], remote: true do |f|
+  - if @comentario.errors.any?
+  
+    #error_explanation
+      %header2= "#{ pluralize(@comentario.errors.count, "error") } no permiten crear este ccomentario"
+      %ul
+        = @comentario.errors.full_messages.each do |message|
+          = message
+
   %fieldset
     = f.text_area :comentario, size: "60x12"
 

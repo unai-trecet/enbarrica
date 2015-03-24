@@ -10,11 +10,13 @@ class ComentariosController < ApplicationController
   def create
     @comentario = @comentable.comentarios.new(comentario_params)
     @comentario.user = current_user
-    if @comentario.save
+    
+    if @comentario.save 
+      flash[:notice] = "El comentario ha sido creado con éxito."
       redirect_to @comentable
     else
-      render "vinos/show"
-    end    
+      render :new
+    end
   end
 
   private
@@ -24,7 +26,6 @@ class ComentariosController < ApplicationController
   end
 
   def get_commented_object
-    # binding.pry
     if params[:vino_id]
       @comentable = Vino.find(params[:vino_id])
     end

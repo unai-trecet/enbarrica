@@ -60,6 +60,10 @@ describe ComentariosController do
           it "creates a comentario associated with the current user" do
             expect(estacada.comentarios.last.user).to eq(user)
           end
+
+          it "sets the notice" do
+            expect(flash[:notice]).to eq("El comentario ha sido creado con éxito.")
+          end
         end
       end
 
@@ -74,7 +78,7 @@ describe ComentariosController do
           end
 
           it "renders commented vino's show template" do
-            expect(response).to render_template "vinos/show"
+            expect(response).to render_template :new
           end
           
           it "sets error message"
