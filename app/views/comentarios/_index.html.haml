@@ -1,9 +1,8 @@
-= comentarios.each do |comentario|
+- comentarios.each do |comentario|
   %article.review
     %li.row
       .col-sm-2
         %span Rating: 5 / 5
-        / %p by <a href="">John A. Zoidberg</a>
         %p= link_to comentario.user.full_name, user_path(comentario.user)
       .col-sm-8
         %p= comentario.comentario
