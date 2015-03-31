@@ -7,5 +7,6 @@ describe Vino do
   it { should belong_to(:envejecimiento) }
   
   it { should have_many(:tipo_uvas) }
+  it { should have_many(:ratings) }
   it { should have_many(:comentarios) }
 end

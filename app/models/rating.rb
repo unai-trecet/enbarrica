@@ -1,4 +1,4 @@
 class Rating < ActiveRecord::Base
   belongs_to :user
-  belongs_to :comentario
+  belongs_to :vino
 end
