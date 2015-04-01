@@ -6,31 +6,30 @@
       .video_info.col-sm-3
         %header
           %h3= @vino.nombre
-          / %span Rating: 4.5/5.0
           %span Averate rating
           #star
           
           %p Your rating
-          #user_star
+          #user_rating
 
-          / :javascript
-          /   $('#star').raty({
-          /     readOnly: true,
-          /     score: "#{ @vino.average_rating }"
-          /     path: '/assets' 
-          /   });  
-          
-          /   $('#user_rating').raty({
-          /     score: = "#{ @rating.valoracion }"
-          /     path: '/assets'
-          /     click: function(score, evt){
-          /       $.ajax({
-          /         url: '/ratings/' + #{ @rating.id } + '?user=#{ current_user.full_name }',
-          /         type: 'PATCH',
-          /         data: { score: score, vino_id: #{ @vino.id } }
-          /       });
-          /     }
-          /   });
+          :javascript
+            $('#star').raty({
+              readOnly: true,
+              score: ' #{ @vino.average_rating } ',
+              path: '/assets' 
+            });  
+
+            $('#user_rating').raty({
+              score:  ' #{ @rating.valoracion } ',
+              path: '/assets',
+              click: function(score, evt) {
+                $.ajax({
+                  url: '/ratings/' +  #{ @rating.id } + '?user= #{ current_user.full_name } ',
+                  type: 'PATCH',
+                  data: { score: score, vino_id: ' #{ @vino.id } ' }
+                });
+              }
+            });
 
           %p Bodega: #{ link_to @vino.bodega.nombre, bodega_path(@vino.bodega) }
           %p Año: #{ @vino.añada }

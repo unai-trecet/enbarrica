@@ -1,6 +1,16 @@
 class VinosController < ApplicationController
+  
   def show
     @vino = Vino.find(params[:id])
     @comentario = Comentario.new
+
+    if current_user 
+      @rating = Rating.find_by(vino_id: @vino.id, user_id: current_user.id) 
+
+      unless @rating 
+        @rating = Rating.create(vino_id: @vino, user_id: current_user.id)
+      end
+    end
   end
+
 end

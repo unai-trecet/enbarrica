@@ -8,4 +8,8 @@ class Vino < ActiveRecord::Base
 
   has_many :comentarios, as: :comentable
   has_many :ratings
+
+  def average_rating
+    ratings.sum(:valoracion) / ratings.size
+  end
 end
