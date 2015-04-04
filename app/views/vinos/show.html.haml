@@ -19,6 +19,18 @@
               path: '../assets/'
             });  
 
+            $('#user_rating').raty({
+              score: "#{ @rating.valoracion }",
+              path: '../assets',
+              click: function(score, evt) {
+                $.ajax({
+                  url: "/ratings/#{ @rating.id }?user=#{ @current_user.full_name }",
+                  type: 'PATCH',
+                  data: { score: score, vino_id: "#{ @vino.id }" }
+                });
+              }              
+            });
+
           %p Bodega: #{ link_to @vino.bodega.nombre, bodega_path(@vino.bodega) }
           %p Año: #{ @vino.añada }
           - if !@vino.envejecimiento.blank?
