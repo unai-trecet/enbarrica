@@ -11,6 +11,6 @@ describe Vino do
   it { should have_many(:comentarios) }
 
   describe "average_rating" do
-
+    it "returns the average valoracion of every rating done for this vino"
   end
 end
