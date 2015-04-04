@@ -9,4 +9,8 @@ describe Vino do
   it { should have_many(:tipo_uvas) }
   it { should have_many(:ratings) }
   it { should have_many(:comentarios) }
+
+  describe "average_rating" do
+
+  end
 end
