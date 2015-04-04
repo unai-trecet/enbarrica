@@ -16,7 +16,7 @@
             $('#star').raty({
               readOnly: true,
               score: ' #{ @vino.average_rating } ',
-              path: 'assets/'
+              path: '../assets/'
             });  
 
           %p Bodega: #{ link_to @vino.bodega.nombre, bodega_path(@vino.bodega) }
