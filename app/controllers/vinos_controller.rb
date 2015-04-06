@@ -8,7 +8,7 @@ class VinosController < ApplicationController
       @rating = Rating.find_by(vino_id: @vino.id, user_id: current_user.id) 
 
       unless @rating 
-        @rating = Rating.create(vino_id: @vino, user_id: current_user.id)
+        @rating = Rating.create(vino_id: @vino.id, user_id: current_user.id)
       end
     end
   end
