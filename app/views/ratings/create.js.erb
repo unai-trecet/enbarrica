@@ -1,0 +1,17 @@
+$("#star").raty({
+  readOnly: true,
+  score: "#{ @vino.average_rating }",
+  path: "../assets/"
+});
+$("·user_rating").raty({
+  score: "0",
+  path: "../assets/"
+  click: function(score, evt){
+    $.ajax({
+      url: "/ratings"
+      type: "POST",
+      data: { score: score }
+    }).done(function(data){});
+  }
+
+});

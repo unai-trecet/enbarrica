@@ -24,9 +24,9 @@
               path: '../assets',
               click: function(score, evt) {
                 $.ajax({
-                  url: "/ratings",
-                  type: 'POST',
-                  data: { rating: { valoracion: score, vino_id: "#{ @vino.id }", user_id: "#{ current_user.id }"} } 
+                  url: "/ratings/#{ @rating.id }?user=#{ @current_user.full_name }",
+                  type: 'PATCH',
+                  data: { valoracion: score, vino_id: "#{ @vino.id }" }
                 });
               }              
             });

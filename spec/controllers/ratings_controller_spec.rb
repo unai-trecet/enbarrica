@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 describe RatingsController do 
+  
   describe "update" do
     context "for authenticated users" do 
       let(:user) { Fabricate :user }
@@ -28,8 +29,14 @@ describe RatingsController do
     end
 
     context "for unauthenticated users" do
-      it "redirects to sign_in page"
-      it "sets error message"
+      it "redirects to sign_in page" do
+        patch :update, id: 1
+        expect(response).to redirect_to sign_in_path
+      end
     end
   end  
+
+  describe "create" do
+
+  end
 end

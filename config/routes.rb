@@ -21,5 +21,5 @@ Enbarrica::Application.routes.draw do
   
   resources :tipo_uvas, only: [:show]
   resources :envejecimientos, only: [:show]
-  resources :ratings, only: [:update]
+  resources :ratings, only: [:create, :update]
 end
