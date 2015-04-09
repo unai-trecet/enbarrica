@@ -12,7 +12,7 @@ describe ComentariosController do
 
         let(:estacada) { estacada = Fabricate :vino }
 
-        before { get :new, vino_id: estacada.id }
+        before { xhr :get, :new, vino_id: estacada.id, :format => 'js' }
 
         it "sets @comentable variable equal to the vino passed by" do          
           expect(assigns :comentable).to eq(estacada)
@@ -26,7 +26,7 @@ describe ComentariosController do
 
     context "for unauthenticated users" do
       it "redirects to sign_in page" do
-        get :new 
+        xhr :get, :new
         expect(response).to redirect_to sign_in_path
       end
     end
@@ -71,7 +71,7 @@ describe ComentariosController do
         context "commenting vino" do
 
           let(:estacada) { Fabricate :vino }
-          before { post :create, comentario: { comentario: "" }, vino_id: estacada.id }
+          before { xhr :post, :create, comentario: { comentario: "" }, vino_id: estacada.id }
 
           it "does not create a comentario" do
             expect(Comentario.count).to eq(0)
