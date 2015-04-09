@@ -10,7 +10,12 @@ class RatingsController < ApplicationController
 
   def create
     @rating = Rating.new(rating_params)
-    @rating.save
+
+    if @rating.save
+      redirect_to vino_path @rating.vino.id
+    else
+      render "vinos/show"
+    end
   end
 
   private
