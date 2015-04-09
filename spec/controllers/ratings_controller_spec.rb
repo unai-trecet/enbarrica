@@ -37,6 +37,6 @@ describe RatingsController do
   end  
 
   describe "create" do
-
+    
   end
 end
