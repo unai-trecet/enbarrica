@@ -65,6 +65,16 @@ describe RatingsController do
         end
       end
 
+      context "current user has allready done one rating for this vino" do
+        it "does not create a rating if the user has allready created one" do
+          rating = Fabricate :rating, user_id: user.id, vino_id:vino.id
+          xhr :post, :create, rating: { valoracion: 3, vino_id: vino.id, user_id: user.id }
+
+          expect(Rating.last).to eq(rating)
+          expect(Rating.count).to eq(1)
+        end
+      end
+
       context "with invalid input" do
         it "does not create a rating without valoracion" do
           xhr :post, :create, rating: { vino_id: vino.id, user_id: user.id } 
