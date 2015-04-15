@@ -10,6 +10,8 @@ Enbarrica::Application.routes.draw do
     resources :comentarios, only: [:new, :create, :edit, :update, :delete]
   end
 
+  resources :ratings, only: [:create, :update]
+
   resources :vinos, concerns: :comentable
   resources :bodegas, concerns: :comentable
   resources :denominaciones, only: [:show], concerns: :comentable
@@ -21,5 +23,5 @@ Enbarrica::Application.routes.draw do
   
   resources :tipo_uvas, only: [:show]
   resources :envejecimientos, only: [:show]
-  resources :ratings, only: [:create, :update]
+  
 end
