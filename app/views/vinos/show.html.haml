@@ -28,12 +28,31 @@
                   readOnly: true,
                   score: ' #{ @rating.valoracion } ',
                   path: '../assets/'
-                });                 
+                });       
 
+              %a.btn.btn-default Cambiar valoración
+
+              #boton_cambiar_valoracion  
+
+              :javascript
+                $('.btn-default').on('click', function(){
+                  $('#boton_cambiar_valoracion').raty({
+                      score: "#{ @rating.valoracion }",
+                      path: "../assets",
+                      click: function(score, evt) {
+                        $.ajax({
+                          url: "/ratings/#{ @rating.id }",
+                          type: 'PATCH',
+                          data: { valoracion: score, rating_id: "#{ @rating.id }" } 
+                        });
+                    }              
+                  }).slideToggle();
+                });
+              
             - else
               
               %a.btn.btn-default Valorar vino
-              
+
               #boton_valoracion
 
               :javascript

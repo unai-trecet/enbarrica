@@ -3,6 +3,7 @@ $("#star").raty({
   score: "#{ @vino.average_rating }",
   path: "../assets/"
 });
+
 $("·user_rating").raty({
   score: "0",
   path: "../assets/"
@@ -10,7 +11,7 @@ $("·user_rating").raty({
     $.ajax({
       url: "/ratings"
       type: "POST",
-      data: { score: score }
+      data: { valoracion: score }
     }).done(function(data){});
   }
 });

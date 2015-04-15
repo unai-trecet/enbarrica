@@ -3,9 +3,8 @@ class RatingsController < ApplicationController
   
   def update
     @rating = Rating.find(params[:id])
-    @vino = Vino.find(params[:vino_id])
+    binding.pry
     @rating.update_attribute(:valoracion, params[:valoracion])
-    redirect_to vino_path(@vino.id)
   end
 
   def create
