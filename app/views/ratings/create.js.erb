@@ -4,6 +4,12 @@ $("#star").raty({
   path: "../assets/"
 });
 
+$('#valoracion_usuario').raty({
+  readOnly: true,
+  score: "<%= @rating.valoracion %>",
+  path: '../assets/'
+}); 
+
 $("·user_rating").raty({
   score: "0",
   path: "../assets/"
