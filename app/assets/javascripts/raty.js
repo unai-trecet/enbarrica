@@ -735,7 +735,7 @@
     mouseout     : undefined,
     mouseover    : undefined,
     noRatedMsg   : 'Not rated yet!',
-    number       : 5,
+    number       : 10,
     numberMax    : 20,
     path         : undefined,
     precision    : false,
