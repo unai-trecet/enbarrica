@@ -12,12 +12,12 @@ describe RatingsController do
        session[:user_id] = user.id 
        rating.user = user
        rating.vino = vino
-       patch :update, id: rating.id, vino_id: vino.id, user_id: user.id, valoracion: 3
+       xhr :patch, :update, id: rating.id, vino_id: vino.id, user_id: user.id, valoracion: 3
       end
 
-      it "renders vino show page" do        
-        expect(response).to redirect_to vino_path(vino.id)
-      end
+      # it "renders vino show page" do        
+      #   expect(response).to redirect_to vino_path(vino.id)
+      # end
 
       it "sets the @rating varible with the id passed by" do
         expect(assigns :rating).to eq(rating)

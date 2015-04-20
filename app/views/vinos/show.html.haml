@@ -10,12 +10,14 @@
           #star 
 
           :javascript
-            $('#star').raty({
-              readOnly: true,
-              score: ' #{ @vino.average_rating } ',
-              path: '../assets/'
-            });  
-
+            $(document).ready(function() {
+              $('#star').raty({
+                readOnly: true,
+                score: ' #{ @vino.average_rating } ',
+                path: '../assets/'
+              });  
+            });
+            
           %p Número de valoraciones: #{ @vino.ratings.count }
           
           - if current_user
@@ -24,31 +26,35 @@
               #valoracion_usuario
 
               :javascript
-                $('#valoracion_usuario').raty({
-                  readOnly: true,
-                  score: ' #{ @rating.valoracion } ',
-                  path: '../assets/'
-                });       
+                $(document).ready(function() {
+                  $('#valoracion_usuario').raty({
+                    readOnly: true,
+                    score: ' #{ @rating.valoracion } ',
+                    path: '../assets/'
+                  });       
+                });
 
               %a.btn.btn-default Cambiar valoración
 
               #boton_cambiar_valoracion  
 
               :javascript
-                $('.btn-default').on('click', function(){
-                  $('#boton_cambiar_valoracion').raty({
-                      score: "#{ @rating.valoracion }",
-                      path: "../assets",
-                      click: function(score, evt) {
-                        $.ajax({
-                          url: "/ratings/#{ @rating.id }",
-                          type: 'PATCH',
-                          data: { valoracion: score, rating_id: "#{ @rating.id }" } 
-                        });
-                    }              
-                  }).slideToggle();
+                $(document).ready(function() {
+                  $('.btn-default').on('click', function() {
+                    $('#boton_cambiar_valoracion').raty({
+                        score: "#{ @rating.valoracion }",
+                        path: "../assets",
+                        click: function(score, evt) {
+                          $.ajax({
+                            url: "/ratings/#{ @rating.id }",
+                            type: 'PATCH',
+                            data: { valoracion: score, rating_id: "#{ @rating.id }" } 
+                          });
+                      }              
+                    }).slideToggle();
+                  });
                 });
-              
+
             - else
               
               %a.btn.btn-default Valorar vino

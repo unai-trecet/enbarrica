@@ -14,6 +14,7 @@ gem 'haml-rails'
 gem 'bcrypt'
 gem 'bootstrap-sass'
 gem 'bootstrap_form'
+gem 'jquery-turbolinks'
 
 group :doc do
   gem 'sdoc', require: false
