@@ -16,10 +16,10 @@ describe VinosController do
       expect(assigns :vino).to eq(rayo)
     end
 
-    # it "sets @comentario as a new Comentario" do
-    #   get :show, id: rayo.id
-    #   expect(assigns :comentario).to be_a Comentario
-    # end
+    it "sets @comentario as Comentario instance" do
+      get :show, id: rayo.id
+      expect(assigns :comentario).to be_instance_of Comentario
+    end
 
   end
 end
