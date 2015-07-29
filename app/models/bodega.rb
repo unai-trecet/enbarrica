@@ -7,7 +7,7 @@ class Bodega < ActiveRecord::Base
     contador = 0
 
     vinos.each do |vino|
-      if vino.average_rating.present? 
+      if vino.average_rating 
         contador += 1
       end
     end
@@ -26,6 +26,4 @@ class Bodega < ActiveRecord::Base
 
     suma_rating / number_of_rated_vinos
   end
-
-
 end

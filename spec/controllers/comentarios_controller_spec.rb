@@ -20,6 +20,21 @@ describe ComentariosController do
 
         it "sets @comentario variable" do
           expect(assigns :comentario).to be_a Comentario
+        end     
+      end 
+      
+      context "bodega as commented object" do
+
+        let(:finca_estacada) { Fabricate :bodega }
+
+        before { xhr :get, :new, bodega_id: finca_estacada.id, :format => 'js' }
+
+        it "sets @comentable variable equal to the bodega passed by" do          
+          expect(assigns :comentable).to eq(finca_estacada)
+        end
+
+        it "sets @comentario variable" do
+          expect(assigns :comentario).to be_a Comentario
         end        
       end
     end  
@@ -92,13 +107,5 @@ describe ComentariosController do
     context "for unauthenticated users" do
 
     end
-  end
-
-  describe "POST update" do
-
-  end
-
-  describe "DELETE destroy" do
-
   end
 end

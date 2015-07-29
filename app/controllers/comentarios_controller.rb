@@ -29,6 +29,8 @@ class ComentariosController < ApplicationController
   def get_commented_object
     if params[:vino_id]
       @comentable = Vino.find(params[:vino_id])
+    elsif params[:bodega_id]
+      @comentable = Bodega.find(params[:bodega_id])
     end
   end
 end

@@ -22,12 +22,16 @@
 
           %p= @bodega.denominacion
         %p= @bodega.descripcion
+        - if current_user
+          .actions
+            = button_to new_bodega_comentario_path(@bodega, @comentario), remote: true, method: "get" do
+              .btn-btn-default Comentar bodega
+
 %section.reviews.container
   .row
     .col-sm-10.col-sm-offset-1
-      / .col-md-6.col-md-offset-2{ id: "comentario-form", style: "display:none;" }
       #comentario-form
-
+      
       %header
         %h2= "Número de comentarios #{ @bodega.comentarios.count }"
       %ul
