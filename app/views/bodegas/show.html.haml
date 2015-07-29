@@ -13,12 +13,12 @@
             $(document).ready(function() {
               $('#star').raty({
                 readOnly: true,
-                score: ' #{ @vino.average_rating } ',
+                score: ' #{ @bodega.average_rating } ',
                 path: '../assets/'
               });  
             });
             
-          %p Número de valoraciones: #{ @vino.ratings.count }
+          %p Número de vinos valorados: #{ @bodega.number_of_rated_vinos }
 
           %p= @bodega.denominacion
         %p= @bodega.descripcion

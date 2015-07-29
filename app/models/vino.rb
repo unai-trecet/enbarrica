@@ -10,6 +10,6 @@ class Vino < ActiveRecord::Base
   has_many :ratings
 
   def average_rating
-    ratings.sum(:valoracion) / ratings.size
+    ratings.size > 0 ? ratings.sum(:valoracion) / ratings.size : nil
   end
 end

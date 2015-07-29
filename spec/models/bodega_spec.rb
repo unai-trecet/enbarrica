@@ -9,6 +9,7 @@ describe Bodega do
   context "comentarios and rating" do
     let(:finca_estacada) { Fabricate :bodega }
     before do
+      estacada_crianza = Fabricate :vino, bodega_id: finca_estacada.id
       estacada_reserva = Fabricate :vino, bodega_id: finca_estacada.id
       estacada_gran_reserva = Fabricate :vino, bodega_id: finca_estacada.id
 
