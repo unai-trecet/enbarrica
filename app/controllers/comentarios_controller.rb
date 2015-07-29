@@ -15,6 +15,7 @@ class ComentariosController < ApplicationController
       flash[:notice] = "El comentario ha sido creado con éxito."
       redirect_to @comentable
     else
+      flash[:error] = "El comentario no ha podido ser creado debido a: #{ @comentario.errors.full_messages }"
       render :new
     end
   end

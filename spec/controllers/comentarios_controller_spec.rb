@@ -81,7 +81,9 @@ describe ComentariosController do
             expect(response).to render_template :new
           end
           
-          it "sets error message"
+          it "sets error message" do
+            expect(flash[:error]).to be_present
+          end
         end
 
       end
