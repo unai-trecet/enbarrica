@@ -16,4 +16,5 @@
 //= require jquery.turbolinks
 //= require_tree .
 //= require raty.js
+//= require rates.js
 

@@ -6,30 +6,75 @@
       .video_info.col-sm-3
         %header
           %h3= @vino.nombre
-          %span Averate rating
-          #star
-          
-          %p Your rating
-          #user_rating
+          %span Valoracion general
+          #star 
 
           :javascript
-            $('#star').raty({
-              readOnly: true,
-              score: ' #{ @vino.average_rating } ',
-              path: '../assets/'
-            });  
-
-            $('#user_rating').raty({
-              score: "#{ @rating.valoracion }",
-              path: '../assets',
-              click: function(score, evt) {
-                $.ajax({
-                  url: "/ratings/#{ @rating.id }?user=#{ @current_user.full_name }",
-                  type: 'PATCH',
-                  data: { valoracion: score, vino_id: "#{ @vino.id }" }
-                });
-              }              
+            $(document).ready(function() {
+              $('#star').raty({
+                readOnly: true,
+                score: ' #{ @vino.average_rating } ',
+                path: '../assets/'
+              });  
             });
+            
+          %p Número de valoraciones: #{ @vino.ratings.count }
+          
+          - if current_user
+            - if current_user.has_rated_vino? @vino
+
+              #valoracion_usuario
+
+              :javascript
+                $(document).ready(function() {
+                  $('#valoracion_usuario').raty({
+                    readOnly: true,
+                    score: ' #{ @rating.valoracion } ',
+                    path: '../assets/'
+                  });       
+                });
+
+              %a.btn.btn-default Cambiar valoración
+
+              #boton_cambiar_valoracion  
+
+              :javascript
+                $(document).ready(function() {
+                  $('.btn-default').on('click', function() {
+                    $('#boton_cambiar_valoracion').raty({
+                        score: "#{ @rating.valoracion }",
+                        path: "../assets",
+                        click: function(score, evt) {
+                          $.ajax({
+                            url: "/ratings/#{ @rating.id }",
+                            type: 'PATCH',
+                            data: { valoracion: score, rating_id: "#{ @rating.id }" } 
+                          });
+                      }              
+                    }).slideToggle();
+                  });
+                });
+
+            - else
+              
+              %a.btn.btn-default Valorar vino
+
+              #boton_valoracion
+
+              :javascript
+                $('.btn-default').on('click', function(){
+                  $('#boton_valoracion').raty({
+                    score: "#{ @rating.valoracion }",
+                    path: '../assets',
+                    click: function(score, evt) {
+                      $.ajax({
+                        url: "/ratings",
+                        type: 'POST',
+                        data: { rating: { valoracion: score, vino_id: "#{ @vino.id }", user_id: "#{ current_user.id }"} } 
+                      });
+                    }              
+                  }).slideToggle();
+                });             
 
           %p Bodega: #{ link_to @vino.bodega.nombre, bodega_path(@vino.bodega) }
           %p Año: #{ @vino.añada }
@@ -39,13 +84,13 @@
             %p Meses en barrica: #{ @vino.meses_envejecimiento }
           %p Denominación de origen: #{ link_to @vino.denominacion.nombre, denominacione_path(@vino.denominacion) }
           %p Tipos de uva: #{ raw @vino.tipo_uvas.collect { |uva| link_to uva.nombre, tipo_uva_path(uva.id) }.join", " }
-          %p Año: #{ @vino.precio.to_f / 100 } €
+          %p Precio: #{ @vino.precio.to_f / 100 } €
 
         %p Descripción: #{ @vino.descripcion }
-        - if current_user.present?
+        - if current_user
           .actions
             = button_to new_vino_comentario_path(@vino, @comentario), remote: true, method: "get" do
-              .btn-btn-default Valorar vino
+              .btn-btn-default Comentar vino
 
             %a.btn.btn-default(href="") + Mis listas
 
