@@ -22,7 +22,7 @@ describe ComentariosController do
           expect(assigns :comentario).to be_a Comentario
         end     
       end 
-      
+
       context "bodega as commented object" do
 
         let(:finca_estacada) { Fabricate :bodega }
@@ -80,6 +80,33 @@ describe ComentariosController do
             expect(flash[:notice]).to eq("El comentario ha sido creado con éxito.")
           end
         end
+
+        context "commenting bodega" do
+
+          let(:finca_estacada) { Fabricate :bodega }
+
+          before { post :create, comentario: { comentario: "Paquito es muy brasas." }, bodega_id: finca_estacada.id }
+
+          it "redirects to vino show page" do
+            expect(response).to redirect_to finca_estacada     
+          end
+
+          it "creates a comentario" do
+            expect(Comentario.count).to eq(1)
+          end
+          
+          it "creates a comentario associated with a vino object specified by the id" do 
+            expect(Comentario.last.comentable).to eq(finca_estacada)
+          end
+
+          it "creates a comentario associated with the current user" do
+            expect(finca_estacada.comentarios.last.user).to eq(user)
+          end
+
+          it "sets the notice" do
+            expect(flash[:notice]).to eq("El comentario ha sido creado con éxito.")
+          end
+        end        
       end
 
       context "with invalid input" do
@@ -101,6 +128,23 @@ describe ComentariosController do
           end
         end
 
+        context "commenting bodega" do
+
+          let(:finca_estacada) { Fabricate :bodega }
+          before { xhr :post, :create, comentario: { comentario: "" }, bodega_id: finca_estacada.id }
+
+          it "does not create a comentario" do
+            expect(Comentario.count).to eq(0)
+          end
+
+          it "renders commented vino's show template" do
+            expect(response).to render_template :new
+          end
+          
+          it "sets error message" do
+            expect(flash[:error]).to be_present
+          end
+        end
       end
     end
 
