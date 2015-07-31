@@ -97,11 +97,12 @@
 %section.reviews.container
   .row
     .col-sm-10.col-sm-offset-1
-      / .col-md-6.col-md-offset-2{ id: "comentario-form", style: "display:none;" }
       #comentario-form
 
       %header
         %h2= "Número de comentarios #{ @vino.comentarios.count }"
+
       %ul
-        = render partial: "comentarios/index", locals: { comentarios: @vino.comentarios }
+        #comentarios
+        = render partial: "comentarios/index"
 

@@ -1,6 +1,6 @@
 class ComentariosController < ApplicationController
   before_filter :require_user, :get_commented_object
-  before_action
+  before_action :all_comentarios
   respond_to :html, :js
 
   def new
@@ -13,10 +13,8 @@ class ComentariosController < ApplicationController
     
     if @comentario.save 
       flash[:notice] = "El comentario ha sido creado con éxito."
-      redirect_to @comentable
     else
       flash[:error] = "El comentario no ha podido ser creado debido a: #{ @comentario.errors.full_messages }"
-      render :new
     end
   end
 
@@ -32,5 +30,9 @@ class ComentariosController < ApplicationController
     elsif params[:bodega_id]
       @comentable = Bodega.find(params[:bodega_id])
     end
+  end
+
+  def all_comentarios
+    @comentarios = @comentable.comentarios.order(created_at: :desc)
   end
 end

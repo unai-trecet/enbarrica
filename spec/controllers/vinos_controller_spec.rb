@@ -21,7 +21,7 @@ describe VinosController do
       expect(assigns :comentario).to be_instance_of Comentario
     end
 
-    it ""
+    it "sets @rating variable"
 
   end
 end

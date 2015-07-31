@@ -1,0 +1,4 @@
+$(document).ready(function(){
+  $("#comentarios").html("<%= escape_javascript(render 'index') %>");
+  $("#comentario-form").slideUp(350);
+});

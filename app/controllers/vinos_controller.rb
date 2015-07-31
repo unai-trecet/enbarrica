@@ -2,6 +2,7 @@ class VinosController < ApplicationController
   
   def show
     @vino = Vino.find(params[:id])
+    @comentarios = @vino.comentarios.order(created_at: :desc)
     @comentario = Comentario.new
 
     if current_user 
