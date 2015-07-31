@@ -1,7 +1,8 @@
 $(document).ready(function() {
-  $("#comentario-form").html("<%= escape_javascript(render 'form') %>");
-  $('#comentario-form').slideDown(350);
+  $("#comentario_form").html("<%= escape_javascript(render 'form') %>");
+  $('#comentario_form').slideDown(350);
+
   $('#cancel').on('click', function() {
-    $("#comentario-form").slideUp(350);
+    $("#comentario_form").slideUp(350);
   });
 });

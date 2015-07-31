@@ -10,7 +10,7 @@ class ComentariosController < ApplicationController
   def create
     @comentario = @comentable.comentarios.new(comentario_params)
     @comentario.user = current_user
-    
+
     if @comentario.save 
       flash[:notice] = "El comentario ha sido creado con éxito."
     else
