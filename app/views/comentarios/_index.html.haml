@@ -2,7 +2,20 @@
   %article.review
     %li.row
       .col-sm-4
-        %span Rating: 5 / 5
+
         %p #{ link_to comentario.user.full_name, user_path(comentario.user) }, #{ comentario.created_at.strftime('%F') } a las #{ comentario.created_at.strftime('%T') } 
-      .col-sm-8
         %p= comentario.comentario
+        
+
+      .col-sm-8
+        - if current_user.has_rated_vino? @vino
+          #user_rating_in_comentario
+
+          :javascript
+            $(document).ready(function() {
+              $('#user_rating_in_comentario').raty({
+                readOnly: true,
+                score: ' #{ @rating.valoracion } ',
+                path: '../assets/'
+              });  
+            });

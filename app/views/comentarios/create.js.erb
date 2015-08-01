@@ -1,5 +1,5 @@
 $(document).ready(function(){
-  $("#comentarios").html("<%= escape_javascript(render 'index') %>");  
+  // $("#comentarios").html("<%= escape_javascript(render 'index') %>");  
   $('#comentarios_messages').prepend('<%= escape_javascript(render("shared/messages", :formats => [:html])) %>');
   $("#comentario_form").slideUp(350);
 });
