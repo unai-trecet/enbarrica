@@ -22,7 +22,7 @@
           
           - if current_user
             - if current_user.has_rated_vino? @vino
-
+              %span Mi valoración 
               #valoracion_usuario
 
               :javascript
@@ -42,7 +42,7 @@
                 $(document).ready(function() {
                   $('.btn-default').on('click', function() {
                     $('#boton_cambiar_valoracion').raty({
-                        score: "#{ @rating.valoracion }",
+                        score: "0",
                         path: "../assets",
                         click: function(score, evt) {
                           $.ajax({
@@ -105,5 +105,6 @@
 
       %ul
         #comentarios
-        = render partial: "comentarios/index"
+        #comentarios_inicial
+          = render partial: "comentarios/index"
 
