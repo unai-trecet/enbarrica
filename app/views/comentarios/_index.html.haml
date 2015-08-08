@@ -1,3 +1,6 @@
+%header
+  %h2= "Número de comentarios #{ @comentarios.count }"
+
 - @comentarios.each do |comentario|
   %article.review
     %li.row
@@ -5,16 +8,13 @@
 
         %p #{ link_to comentario.user.full_name, user_path(comentario.user) }, #{ comentario.created_at.strftime('%F') } a las #{ comentario.created_at.strftime('%T') } 
         %p= comentario.comentario
-      
       .col-sm-8
-        - if current_user.has_rated_vino? @vino
-          #user_rating_in_comentario
+        - if comentario.comentable.instance_of?(Vino) && current_user.has_rated_vino?(comentario.comentable)
 
+          #user_rating_in_comentario
           :javascript
-            $(document).ready(function() {
-              $('#user_rating_in_comentario').raty({
-                readOnly: true,
-                score: ' #{ @rating.valoracion } ',
-                path: '../assets/'
-              });  
-            });
+            $('#user_rating_in_comentario').raty({
+              readOnly: true,
+              score: ' #{ Rating.find_by(user: current_user, vino: comentario.comentable).valoracion } ',
+              path: '../assets/'
+            });  
