@@ -8,7 +8,6 @@ class User < ActiveRecord::Base
   has_many :ratings
 
   def has_rated_vino? vino
-    # binding.pry
     ratings.map(&:vino).include? vino
   end
 end

@@ -58,11 +58,7 @@ describe ComentariosController do
 
           let(:estacada) { Fabricate :vino }
 
-          before { post :create, comentario: { comentario: "Paquito es muy brasas." }, vino_id: estacada.id }
-
-          it "redirects to vino show page" do
-            expect(response).to redirect_to estacada     
-          end
+          before { xhr :post, :create, comentario: { comentario: "Paquito es muy brasas." }, vino_id: estacada.id, :format => 'js' }
 
           it "creates a comentario" do
             expect(Comentario.count).to eq(1)
@@ -85,11 +81,7 @@ describe ComentariosController do
 
           let(:finca_estacada) { Fabricate :bodega }
 
-          before { post :create, comentario: { comentario: "Paquito es muy brasas." }, bodega_id: finca_estacada.id }
-
-          it "redirects to vino show page" do
-            expect(response).to redirect_to finca_estacada     
-          end
+          before { xhr :post, :create, comentario: { comentario: "Paquito es muy brasas." }, bodega_id: finca_estacada.id, :format => 'js' }
 
           it "creates a comentario" do
             expect(Comentario.count).to eq(1)
@@ -113,16 +105,12 @@ describe ComentariosController do
         context "commenting vino" do
 
           let(:estacada) { Fabricate :vino }
-          before { xhr :post, :create, comentario: { comentario: "" }, vino_id: estacada.id }
+          before { xhr :post, :create, comentario: { comentario: "" }, vino_id: estacada.id, :format => 'js' }
 
           it "does not create a comentario" do
             expect(Comentario.count).to eq(0)
           end
 
-          it "renders commented vino's show template" do
-            expect(response).to render_template :new
-          end
-          
           it "sets error message" do
             expect(flash[:error]).to be_present
           end
@@ -131,16 +119,12 @@ describe ComentariosController do
         context "commenting bodega" do
 
           let(:finca_estacada) { Fabricate :bodega }
-          before { xhr :post, :create, comentario: { comentario: "" }, bodega_id: finca_estacada.id }
+          before { xhr :post, :create, comentario: { comentario: "" }, bodega_id: finca_estacada.id, :format => 'js' }
 
           it "does not create a comentario" do
             expect(Comentario.count).to eq(0)
           end
 
-          it "renders commented vino's show template" do
-            expect(response).to render_template :new
-          end
-          
           it "sets error message" do
             expect(flash[:error]).to be_present
           end
