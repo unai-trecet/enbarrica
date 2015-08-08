@@ -10,54 +10,35 @@
           = content_tag :div, id: "vino_rating", data: { valoracion: @vino.average_rating } do
             %h4 Valoracion general
 
-
-          / #star 
-
-          / :javascript
-          /   $(document).ready(function() {
-          /     $('#star').raty({
-          /       readOnly: true,
-          /       score: ' #{ @vino.average_rating } ',
-          /       path: '../assets/'
-          /     });  
-          /   });
-            
           %p Número de valoraciones: #{ @vino.ratings.count }
           
           - if current_user
             - if current_user.has_rated_vino? @vino
-              %span Mi valoración 
-              #valoracion_usuario
-
-              :javascript
-                $(document).ready(function() {
-                  $('#valoracion_usuario').raty({
-                    readOnly: true,
-                    score: ' #{ @rating.valoracion } ',
-                    path: '../assets/'
-                  });       
-                });
+              = content_tag :div, id: "valoracion_usuario", data: { valoracion: @rating.valoracion } do
+                %h4 Tu valoración
 
               %a.btn.btn-default Cambiar valoración
+              = content_tag :div, id: "boton_cambiar_valoracion", data: { rating_id: @rating.id } do
+                %br
 
-              #boton_cambiar_valoracion  
+              / #boton_cambiar_valoracion  
 
-              :javascript
-                $(document).ready(function() {
-                  $('.btn-default').on('click', function() {
-                    $('#boton_cambiar_valoracion').raty({
-                        score: "0",
-                        path: "../assets",
-                        click: function(score, evt) {
-                          $.ajax({
-                            url: "/ratings/#{ @rating.id }",
-                            type: 'PATCH',
-                            data: { valoracion: score, rating_id: "#{ @rating.id }" } 
-                          });
-                      }              
-                    }).slideToggle();
-                  });
-                });
+              / :javascript
+              /   $(document).ready(function() {
+              /     $('.btn-default').on('click', function() {
+              /       $('#boton_cambiar_valoracion').raty({
+              /           score: "0",
+              /           path: "../assets",
+              /           click: function(score, evt) {
+              /             $.ajax({
+              /               url: "/ratings/#{ @rating.id }",
+              /               type: 'PATCH',
+              /               data: { valoracion: score, rating_id: "#{ @rating.id }" } 
+              /             });
+              /         }              
+              /       }).slideToggle();
+              /     });
+              /   });
 
             - else
               
