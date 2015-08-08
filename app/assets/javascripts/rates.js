@@ -1,8 +1,10 @@
-$('#star').raty({
-  readOnly: true,
-  score: $('#vino_rating').data('valoracion_media'),
-  path: '../assets/'
-});  
+$(document).ready(function() {
+  $('#vino_rating').raty({
+    readOnly: true,
+    score: $('#vino_rating').data('valoracion'),
+    path: '../assets/'
+  }); 
+}); 
 
 $('#valoracion_usuario').raty({
   readOnly: true,

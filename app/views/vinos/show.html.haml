@@ -6,17 +6,21 @@
       .video_info.col-sm-3
         %header
           %h3= @vino.nombre
-          %span Valoracion general
-          #star 
+          
+          = content_tag :div, id: "vino_rating", data: { valoracion: @vino.average_rating } do
+            %h4 Valoracion general
 
-          :javascript
-            $(document).ready(function() {
-              $('#star').raty({
-                readOnly: true,
-                score: ' #{ @vino.average_rating } ',
-                path: '../assets/'
-              });  
-            });
+
+          / #star 
+
+          / :javascript
+          /   $(document).ready(function() {
+          /     $('#star').raty({
+          /       readOnly: true,
+          /       score: ' #{ @vino.average_rating } ',
+          /       path: '../assets/'
+          /     });  
+          /   });
             
           %p Número de valoraciones: #{ @vino.ratings.count }
           
