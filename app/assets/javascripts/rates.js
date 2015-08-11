@@ -12,22 +12,24 @@ $(document).ready(function() {
   }); 
 
   $('.btn-default').on('click', function() {
-    var rating_id = $('#boton_cambiar_valoracion').data('rating_id');
-    alert(rating_id);
+    var rating_id = $('#boton_cambiar_valoracion').data('rating');
     $('#boton_cambiar_valoracion').raty({
-        score: '0',
-        path: "../assets",
-        click: function(score, evt) {
-          $.ajax({
-            url: "/ratings/" + rating_id,
-            type: 'PATCH',
-            data: { valoracion: score, rating_id: rating_id } 
-          });
+      score: '0',
+      path: "../assets",
+      click: function(score, evt) {
+        $.ajax({
+          url: "/ratings/" + rating_id,
+          type: 'PATCH',
+          data: { valoracion: score, rating_id: rating_id } 
+        });
       }              
-    });
+    }).slideToggle();
   });
 
+
+/////////////////////////////////////////////
   $('.btn-default').on('click', function(){
+
     $('#boton_valoracion').raty({
       score: $('#vino_rating').data('valoracion'),
       path: '../assets',

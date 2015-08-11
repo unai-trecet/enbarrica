@@ -1,4 +1,4 @@
-$('#star').raty({
+$('#vino_rating').raty({
   readOnly: true,
   score: "<%= @vino.average_rating %>",
   path: "../assets/"
@@ -10,7 +10,7 @@ $('#valoracion_usuario').raty({
   path: '../assets/'
 });   
 
-$('#user_rating').raty({
+$('#boton_cambiar_valoracion').raty({
   score: "<%= @rating.valoracion %>",
   path: "../assets/",
   
@@ -22,3 +22,4 @@ $('#user_rating').raty({
     }).done(function(data){});
   }
 });
+

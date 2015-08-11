@@ -1,3 +1,4 @@
+
 %article.video
   .container
     .row
@@ -6,39 +7,21 @@
       .video_info.col-sm-3
         %header
           %h3= @vino.nombre
-          
+          %h4 Valoracion general
           = content_tag :div, id: "vino_rating", data: { valoracion: @vino.average_rating } do
-            %h4 Valoracion general
+            -""
 
           %p Número de valoraciones: #{ @vino.ratings.count }
           
           - if current_user
             - if current_user.has_rated_vino? @vino
+              %h4 Tu valoración
               = content_tag :div, id: "valoracion_usuario", data: { valoracion: @rating.valoracion } do
-                %h4 Tu valoración
-
-              %a.btn.btn-default Cambiar valoración
-              = content_tag :div, id: "boton_cambiar_valoracion", data: { rating_id: @rating.id } do
-                %br
-
-              / #boton_cambiar_valoracion  
-
-              / :javascript
-              /   $(document).ready(function() {
-              /     $('.btn-default').on('click', function() {
-              /       $('#boton_cambiar_valoracion').raty({
-              /           score: "0",
-              /           path: "../assets",
-              /           click: function(score, evt) {
-              /             $.ajax({
-              /               url: "/ratings/#{ @rating.id }",
-              /               type: 'PATCH',
-              /               data: { valoracion: score, rating_id: "#{ @rating.id }" } 
-              /             });
-              /         }              
-              /       }).slideToggle();
-              /     });
-              /   });
+                -""
+              
+              %a.btn.btn-default Cambiar valoracion
+              = content_tag :div, id: "boton_cambiar_valoracion", data: { rating: @rating.id } do
+                -""
 
             - else
               

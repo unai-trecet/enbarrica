@@ -1,5 +1,6 @@
 class RatingsController < ApplicationController
   before_filter :require_user
+  respond_to :html, :js
   
   def update
     @rating = Rating.find(params[:id])
