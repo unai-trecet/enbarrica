@@ -29,17 +29,32 @@ $(document).ready(function() {
 
 /////////////////////////////////////////////
   $('.btn-default').on('click', function(){
-
     $('#boton_valoracion').raty({
-      score: $('#vino_rating').data('valoracion'),
+      score: "0",
       path: '../assets',
       click: function(score, evt) {
         $.ajax({
           url: "/ratings",
           type: 'POST',
-          data: { rating: { valoracion: score, vino_id: $('#vino_rating').data('vino_id'), user_id: "#{ current_user.id }"} } 
+          data: { rating: { valoracion: score, vino_id: $("#boton_valoracion").data("vino"), user_id: $("#boton_valoracion").data("vino") } } 
         });
       }              
     }).slideToggle();
-  });
+  }); 
+
+
+  // $('.btn-default').on('click', function(){
+
+  //   $('#boton_valoracion').raty({
+  //     score: $('#vino_rating').data('valoracion'),
+  //     path: '../assets',
+  //     click: function(score, evt) {
+  //       $.ajax({
+  //         url: "/ratings",
+  //         type: 'POST',
+  //         data: { rating: { valoracion: score, vino_id: $('#vino_rating').data('vino_id'), user_id: "#{ current_user.id }"} } 
+  //       });
+  //     }              
+  //   }).slideToggle();
+  // });
 });

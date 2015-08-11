@@ -10,13 +10,13 @@ class RatingsController < ApplicationController
 
   def create
     @rating = Rating.new(rating_params)
-
+    @vino = Vino.find(params[:rating][:vino_id])
     unless current_user.has_rated_vino? @rating.vino
       if @rating.save
-        redirect_to vino_path @rating.vino.id
+        flash[:error] = "La valoración se ha guardado con éxito."
+        render 'vinos/show'
       else
         flash[:error] = "No se ha podido guardar su valoración debido a #{ @rating.errors.full_messages }"
-        render "vinos/show"
       end
     end
   end

@@ -1,6 +1,6 @@
-$("#star").raty({
+$('#vino_rating').raty({
   readOnly: true,
-  score: "#{ @vino.average_rating }",
+  score: "<%= @vino.average_rating %>",
   path: "../assets/"
 });
 
@@ -8,16 +8,6 @@ $('#valoracion_usuario').raty({
   readOnly: true,
   score: "<%= @rating.valoracion %>",
   path: '../assets/'
-}); 
+}).slideDown(); 
 
-$("·user_rating").raty({
-  score: "0",
-  path: "../assets/"
-  click: function(score, evt){
-    $.ajax({
-      url: "/ratings"
-      type: "POST",
-      data: { valoracion: score }
-    }).done(function(data){});
-  }
-});
+
