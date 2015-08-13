@@ -7,16 +7,8 @@
         %header
           %h3= @bodega.nombre
           %span Valoracion
-          #star 
-
-          :javascript
-            $(document).ready(function() {
-              $('#star').raty({
-                readOnly: true,
-                score: ' #{ @bodega.average_rating } ',
-                path: '../assets/'
-              });  
-            });
+          = content_tag :div, id: "valoracion_bodega", data: { valoracion: "#{ @bodega.average_rating }" } do
+            - ""
             
           %p Número de vinos valorados: #{ @bodega.number_of_rated_vinos }
 
@@ -32,7 +24,5 @@
     .col-sm-10.col-sm-offset-1
       #comentario-form
       
-      %header
-        %h2= "Número de comentarios #{ @bodega.comentarios.count }"
       %ul
-        = render partial: "comentarios/index", locals: { comentarios: @bodega.comentarios }
+        = render partial: "comentarios/index"
