@@ -1,6 +1,5 @@
 class RatingsController < ApplicationController
   before_filter :require_user
-  respond_to :html, :js
   
   def update
     @rating = Rating.find(params[:id])
@@ -11,12 +10,18 @@ class RatingsController < ApplicationController
   def create
     @rating = Rating.new(rating_params)
     @vino = Vino.find(params[:rating][:vino_id])
+    
     unless current_user.has_rated_vino? @rating.vino
-      if @rating.save
-        flash[:error] = "La valoración se ha guardado con éxito."
-        render 'vinos/show'
-      else
-        flash[:error] = "No se ha podido guardar su valoración debido a #{ @rating.errors.full_messages }"
+      respond_to do |format|
+        if @rating.save
+          flash[:error] = "La valoración se ha guardado con éxito."
+          format.js { render inline: "location.reload();" }
+          format.html { redirect_to vino_path(@vino) }
+        else
+          flash[:error] = "No se ha podido guardar su valoración debido a #{ @rating.errors.full_messages }"
+          format.js { render inline: "location.reload();" }
+          format.html { render @vino }
+        end
       end
     end
   end
