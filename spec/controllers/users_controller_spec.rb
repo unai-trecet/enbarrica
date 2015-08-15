@@ -52,9 +52,9 @@ describe UsersController do
         expect(User.count).to eq(0)
       end
 
-      it "redirects to register page" do
+      it "renders new page" do
         post :create, user: { full_name: "paquito", password: "password", password_confirmation: "password" } 
-        expect(response).to redirect_to register_path
+        expect(response).to render_template 'new'
       end   
 
       it "sets the error message" do
