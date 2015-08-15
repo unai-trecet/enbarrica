@@ -15,6 +15,7 @@
           %p Número de valoraciones: #{ @vino.ratings.count }
           
           - if current_user
+
             - if current_user.has_rated_vino? @vino
               %h4 Tu valoración
               = content_tag :div, id: "valoracion_usuario", data: { valoracion: @rating.valoracion } do
