@@ -34,7 +34,7 @@ $(document).ready(function() {
         $.ajax({
           url: "/ratings",
           type: 'POST',
-          data: { rating: { valoracion: score, vino_id: $("#boton_valoracion").data("vino"), user_id: $("#boton_valoracion").data("vino") } } 
+          data: { rating: { valoracion: score, vino_id: $("#boton_valoracion").data("vino"), user_id: $("#boton_valoracion").data("user") } } 
         });
       }              
     }).slideToggle();
@@ -46,9 +46,9 @@ $(document).ready(function() {
     path: '../assets'
   }); 
 
-  $('#user_rating_in_comentario').raty({
-    readOnly: true,
-    score: $('#user_rating_in_comentario').data('rating'),
-    path: '../assets/'    
-  });
+  // $('.user_rating_in_comentario').raty({
+  //   readOnly: true,
+  //   score: $('.user_rating_in_comentario').data('rating'),
+  //   path: '../assets/'    
+  // });
 });

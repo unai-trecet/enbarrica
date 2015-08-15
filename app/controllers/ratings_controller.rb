@@ -10,7 +10,6 @@ class RatingsController < ApplicationController
   def create
     @rating = Rating.new(rating_params)
     
-    
     unless current_user.has_rated_vino? @rating.vino
       respond_to do |format|
         if @rating.save
