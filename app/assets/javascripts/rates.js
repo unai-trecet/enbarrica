@@ -40,9 +40,15 @@ $(document).ready(function() {
     }).slideToggle();
   });
 
-  $('#valoracion_bodega ').raty({
+  $('#valoracion_bodega').raty({
     readOnly: true,  
     score: $('#valoracion_bodega').data('valoracion'),
     path: '../assets'
   }); 
+
+  $('#user_rating_in_comentario').raty({
+    readOnly: true,
+    score: $('#user_rating_in_comentario').data('rating'),
+    path: '../assets/'    
+  });
 });

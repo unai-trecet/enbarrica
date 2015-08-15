@@ -7,6 +7,7 @@
       .video_info.col-sm-3
         %header
           %h3= @vino.nombre
+
           %h4 Valoracion general
           = content_tag :div, id: "vino_rating", data: { valoracion: @vino.average_rating } do
             -""
@@ -29,16 +30,23 @@
                 -""
 
           %p Bodega: #{ link_to @vino.bodega.nombre, bodega_path(@vino.bodega) }
+
           %p Año: #{ @vino.añada }
+
           - if !@vino.envejecimiento.blank?
             %p Envejecimiento: #{ link_to @vino.envejecimiento.nombre, envejecimiento_path(@vino.envejecimiento.id) }
+
           - if !@vino.meses_envejecimiento.blank?
             %p Meses en barrica: #{ @vino.meses_envejecimiento }
+
           %p Denominación de origen: #{ link_to @vino.denominacion.nombre, denominacione_path(@vino.denominacion) }
+
           %p Tipos de uva: #{ raw @vino.tipo_uvas.collect { |uva| link_to uva.nombre, tipo_uva_path(uva.id) }.join", " }
+
           %p Precio: #{ @vino.precio.to_f / 100 } €
 
         %p Descripción: #{ @vino.descripcion }
+        
         - if current_user
           .actions
             = button_to new_vino_comentario_path(@vino, @comentario), remote: true, method: "get" do

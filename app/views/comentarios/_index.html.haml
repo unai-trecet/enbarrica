@@ -11,10 +11,6 @@
       .col-sm-8
         - if comentario.comentable.instance_of?(Vino) && current_user.has_rated_vino?(comentario.comentable)
 
-          #user_rating_in_comentario
-          :javascript
-            $('#user_rating_in_comentario').raty({
-              readOnly: true,
-              score: ' #{ Rating.find_by(user: current_user, vino: comentario.comentable).valoracion } ',
-              path: '../assets/'
-            });  
+          = content_tag :div, id: "user_rating_in_comentario", data: { rating: "#{ Rating.find_by(user: current_user, vino: comentario.comentable).valoracion }" } do
+            - ""
+

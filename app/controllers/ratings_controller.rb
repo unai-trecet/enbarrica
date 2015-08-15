@@ -9,11 +9,12 @@ class RatingsController < ApplicationController
 
   def create
     @rating = Rating.new(rating_params)
-    @vino = Vino.find(params[:rating][:vino_id])
+    
     
     unless current_user.has_rated_vino? @rating.vino
       respond_to do |format|
         if @rating.save
+          @vino = Vino.find(params[:rating][:vino_id])
           flash[:error] = "La valoración se ha guardado con éxito."
           format.js { render inline: "location.reload();" }
           format.html { redirect_to vino_path(@vino) }
