@@ -1,4 +1,5 @@
 require "rails_helper"
+require 'shoulda/matchers'
 
 describe User do
   it { should validate_presence_of(:email) }
@@ -10,4 +11,5 @@ describe User do
 
   it { should have_many(:comentarios) } 
   it { should have_many(:ratings) }
+  it { should have_many(:lists) }
 end

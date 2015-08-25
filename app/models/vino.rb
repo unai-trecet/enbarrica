@@ -9,6 +9,9 @@ class Vino < ActiveRecord::Base
   has_many :comentarios, as: :comentable
   has_many :ratings
 
+  has_many :vinos_lists
+  has_many :lists, through:  :vinos_lists
+
   def average_rating
     ratings.size > 0 ? ratings.sum(:valoracion) / ratings.size : nil
   end

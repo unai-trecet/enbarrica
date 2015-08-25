@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
 
   has_many :comentarios, as: :comentable
   has_many :ratings
+  has_many :lists  
 
   def has_rated_vino? vino
     ratings.map(&:vino).include? vino

@@ -9,6 +9,8 @@ describe Vino do
   it { should have_many(:tipo_uvas) }
   it { should have_many(:ratings) }
   it { should have_many(:comentarios) }
+  it { should have_many(:lists) }
+  it { should have_many(:vinos_lists) }
 
   describe "average_rating" do
     let(:estacada) { Fabricate :vino }
