@@ -1,5 +1,4 @@
 $(document).ready(function() {
-  
   $('#vino_rating').raty({
     readOnly: true,
     score: $('#vino_rating').data('valoracion'),
@@ -47,4 +46,9 @@ $(document).ready(function() {
     path: '../assets'
   }); 
 
+  // $('.user_rating_in_comentario').raty({
+  //   readOnly: true,
+  //   score: $('.user_rating_in_comentario').data('rating'),
+  //   path: '../assets/'    
+  // });
 });
