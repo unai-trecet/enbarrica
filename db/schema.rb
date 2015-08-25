@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150825160320) do
+ActiveRecord::Schema.define(version: 20150825160541) do
 
   create_table "bodegas", force: true do |t|
     t.string   "nombre"
@@ -125,5 +125,15 @@ ActiveRecord::Schema.define(version: 20150825160320) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "vinos_lists", force: true do |t|
+    t.integer  "vino_id"
+    t.integer  "list_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "vinos_lists", ["list_id"], name: "index_vinos_lists_on_list_id"
+  add_index "vinos_lists", ["vino_id"], name: "index_vinos_lists_on_vino_id"
 
 end
