@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150825155320) do
+ActiveRecord::Schema.define(version: 20150825160320) do
 
   create_table "bodegas", force: true do |t|
     t.string   "nombre"
@@ -109,15 +109,6 @@ ActiveRecord::Schema.define(version: 20150825155320) do
 
   add_index "uso_uvas_vinos", ["tipo_uva_id"], name: "index_uso_uvas_vinos_on_tipo_uva_id"
   add_index "uso_uvas_vinos", ["vino_id"], name: "index_uso_uvas_vinos_on_vino_id"
-
-  create_table "usuario_listas", force: true do |t|
-    t.integer  "user_id"
-    t.string   "nombre"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "usuario_listas", ["user_id"], name: "index_usuario_listas_on_user_id"
 
   create_table "vinos", force: true do |t|
     t.string   "nombre"
