@@ -1,3 +1,9 @@
-$(document).ready(function{
-  $("#lista_form").htlm("<%= escape_javascript(render 'form') %>")
+$(document).ready(function() {
+  $("#lista_form").html("<%= escape_javascript(render 'form') %>");
+  $('#lista_form').slideDown(350);
+
+  $('#cancel').on('click', function() {
+    $("#lista_form").slideUp(350);
+  });
 });
+
