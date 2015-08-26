@@ -24,5 +24,6 @@ Enbarrica::Application.routes.draw do
   resources :tipo_uvas, only: [:show]
   resources :envejecimientos, only: [:show]
   resources :lists
+  resources :vinos_list, only: [:create]
   
 end
