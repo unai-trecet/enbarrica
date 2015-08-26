@@ -5,10 +5,13 @@
         %header
           %img(src="http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest('knwang@gmail.com'.downcase)}?s=40")
           %h2 Listas de vino de #{ @user.full_name } (#{ @user.lists.count })
-          %button.btn.btn-default Follow
+          %button.btn.btn-default Seguir
           %tbody
             = render partial: "lists/index"
-
+      = button_to new_list_path, method: :get, remote: true do
+        .btn-btn-default Crear lista
+      #lista_form
+           
 %section.user_reviews.container
   .row
     .col-sm-10.col-sm-offset-1

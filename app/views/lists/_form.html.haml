@@ -1,0 +1,15 @@
+= bootstrap_form_for @list, remote: true do |f|
+  - if @list.errors.any?
+  
+    #error_explanation
+      %header2= "#{ pluralize(@comentario.errors.count, "error") } no permiten crear este ccomentario"
+      %ul
+        = @list.errors.full_messages.each do |message|
+          = message  
+
+    = f.text_field :nombre
+    = f.hidden_field :user_id, value: current_user.id
+
+  %fieldset.form-group.actions.clearfix
+    %input(type="submit" value="Crear" class="btn" id="submit_button")
+    #cancel.btn.btn-default Cancelar  

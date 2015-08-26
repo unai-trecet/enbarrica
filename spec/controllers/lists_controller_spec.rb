@@ -1,10 +1,14 @@
 require 'rails_helper'
 
-# describe ListsController do 
+describe ListsController do 
   
-#   describe 'GET show' do
+  describe 'GET show' do
 
-#   end
+  end
+
+  describe 'GET new' do
+
+  end
 
 
-# end
+end
