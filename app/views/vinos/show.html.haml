@@ -53,6 +53,9 @@
             = button_to new_vino_comentario_path(@vino, @comentario), remote: true, method: "get" do
               .btn-btn-default Comentar vino
 
+            = button_to vinos_lists_path, remote:true, method: "post" do
+              .btn.btn-default(href="") + Mis listas
+
 %section.reviews.container
   .row
     .col-sm-10.col-sm-offset-1
