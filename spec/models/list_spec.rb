@@ -6,4 +6,7 @@ describe List do
 
   it { should have_many(:vinos) }
   it { should have_many(:vinos_lists) }  
+
+  it { should validate_presence_of(:nombre) }
+  it { should validate_presence_of(:user_id) }
 end

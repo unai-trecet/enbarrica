@@ -9,7 +9,7 @@
         %p #{ link_to comentario.user.full_name, user_path(comentario.user) }, #{ comentario.created_at.strftime('%F') } a las #{ comentario.created_at.strftime('%T') } 
         %p= comentario.comentario
       .col-sm-8
-        - if comentario.comentable.instance_of?(Vino)
+        - if comentario.comentable.instance_of?(Vino) && comentario.user.has_rated_vino?(comentario.comentable)
 
           %div{:id => "comentario_#{ comentario.id }" }
 

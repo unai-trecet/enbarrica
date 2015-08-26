@@ -18,6 +18,6 @@
             %b.caret
           %ul.dropdown-menu(role="menu" aria-labelledby="dlabel")
             %li
-              = link_to "Tu cuenta"
+              = link_to "Tu cuenta", user_path(current_user)
               = link_to "Invitacion"
               = link_to "Salir", sign_out_path

@@ -16,12 +16,13 @@ Enbarrica::Application.routes.draw do
   resources :bodegas, concerns: :comentable
   resources :denominaciones, only: [:show], concerns: :comentable
 
-  resources :users, concerns: :comentable
+  resources :users, concerns: :comentable, only: [:create, :update, :show, :edit]
   get 'register', to: 'users#new'
   get 'sign_out', to: 'sessions#destroy'  
 
   
   resources :tipo_uvas, only: [:show]
   resources :envejecimientos, only: [:show]
+  resources :lists
   
 end

@@ -1,4 +1,16 @@
 class UsersController < ApplicationController
+  
+  def show
+    @user = User.find(params[:id])
+    
+    if @user
+      @comentarios = @user.comentarios
+      @lists = @user.lists
+    else
+      redirect_to root_path
+    end
+  end
+
   def new
     @user = User.new
   end

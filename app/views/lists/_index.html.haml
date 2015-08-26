@@ -1,0 +1,12 @@
+%table.table
+  %thead
+    %tr
+      %th(width="30%") Nombre
+      %th(width="15%") Autor
+  %tbody
+    - @lists.each do |list|
+      %tr
+        %td
+          = link_to "#{ list.nombre }", list_path(list) 
+        %td
+          = link_to "#{ list.user.full_name }", user_path(list.user)

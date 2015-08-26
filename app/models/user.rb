@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   validates_presence_of :email, :full_name, :password, :password_confirmation
   validates_uniqueness_of :email
 
-  has_many :comentarios, as: :comentable
+  has_many :comentarios
   has_many :ratings
   has_many :lists  
 

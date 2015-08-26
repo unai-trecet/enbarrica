@@ -1,6 +1,39 @@
 require 'rails_helper'
 
 describe UsersController do 
+
+  describe "GET show" do
+    let(:ana) { Fabricate :user }
+
+    it "sets @user variable" do
+      ana = Fabricate :user
+
+      get :show, id: ana.id
+      expect(assigns :user).to eq(ana)
+    end
+
+    it "sets @lists variable" do
+      list1 = Fabricate :list, user: ana
+      list2 = Fabricate :list, user: ana
+
+      get :show, id: ana.id
+      expect(assigns :lists).to eq(ana.lists)
+    end
+
+    it "sets @comentarios variable" do
+      comentario1 = Fabricate :comentario, user: ana
+      comentario2 = Fabricate :comentario, user: ana   
+         
+      get :show, id: ana.id
+      expect(assigns :comentarios).to eq(ana.comentarios)
+    end
+
+    it "renders show template" do
+      get :show, id: ana.id
+      expect(response).to render_template :show
+    end 
+  end
+
   describe "GET new" do
     it "renders new template" do
       get :new
