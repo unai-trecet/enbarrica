@@ -53,8 +53,19 @@
             = button_to new_vino_comentario_path(@vino, @comentario), remote: true, method: "get" do
               .btn-btn-default Comentar vino
 
-            = button_to vinos_lists_path, remote:true, method: "post" do
-              .btn.btn-default(href="") + Mis listas
+            #add_vino_to_listas_button.btn.btn-default(href="") + Mis listas
+            #add_vino_to_listas
+
+            :javascript
+              $(document).ready(function(){
+                $('#add_vino_to_listas_button').on('click', function(){
+                  $('#add_vino_to_listas').html("<% binding.pry %>");
+                  $('#add_vino_to_listas').html("<%= escape_javascript(render partial: 'lists/index') %>");
+                  $('#add_vino_to_listas').slideDown(350);
+                });
+              });              
+            / = button_to vinos_lists_path, remote:true, method: "post" do
+            /   .btn.btn-default(href="") + Mis listas
 
 %section.reviews.container
   .row

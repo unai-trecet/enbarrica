@@ -11,7 +11,7 @@ $(document).ready(function() {
     path: '../assets/'
   }); 
 
-  $('#boton_cambiar_valoracion').on('click', function() {
+  $('.btn-default').on('click', function() {
     var rating_id = $('#boton_cambiar_valoracion').data('rating');
     $('#boton_cambiar_valoracion').raty({
       score: '0',
@@ -26,7 +26,7 @@ $(document).ready(function() {
     }).slideToggle();
   });
 
-  $('#boton_valoracion').on('click', function(){
+  $('.btn-default').on('click', function(){
     $('#boton_valoracion').raty({
       score: "0",
       path: '../assets',

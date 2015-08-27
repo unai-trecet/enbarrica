@@ -6,6 +6,4 @@
     - @lists.each do |list|
       %tr
         %td
-          = button_to "#{ list.nombre }", list_path(list) 
-        %td
-          = button_to "#{ list.user.full_name }", user_path(list.user)
+          = button_to "#{ list.nombre }", vinos_lists_path, params: { vino_id: @vino.id, list_id: list.id }
