@@ -5,7 +5,7 @@ class VinosController < ApplicationController
     @comentarios = @vino.comentarios.order(created_at: :desc)
     
     if current_user 
-      @lists = current_user.lists
+      @lists = current_user.lists 
       @comentario = Comentario.new
       @rating = Rating.find_by(vino_id: @vino.id, user_id: current_user.id) 
 

@@ -20,14 +20,14 @@
               %h4 Tu valoración
               = content_tag :div, id: "valoracion_usuario", data: { valoracion: @rating.valoracion } do
                 -""
-              
-              %a.btn.btn-default Cambiar valoracion
-              = content_tag :div, id: "boton_cambiar_valoracion", data: { rating: @rating.id } do
+              %p#boton_cambiar_valoracion.btn.btn-default Cambiar valoracion
+              = content_tag :div, id: "cambiar_valoracion", data: { rating: @rating.id } do
                 -""
 
             - else
-              %a.btn.btn-default Valorar vino
-              = content_tag :div, id: "boton_valoracion", data: { vino: @vino.id, user: current_user.id } do
+              %p#boton_valoracion.btn.btn-default Valorar vino
+ 
+              = content_tag :div, id: "valorar", data: { vino: @vino.id, user: current_user.id } do
                 -""
 
           %p Bodega: #{ link_to @vino.bodega.nombre, bodega_path(@vino.bodega) }
@@ -53,20 +53,16 @@
             = button_to new_vino_comentario_path(@vino, @comentario), remote: true, method: "get" do
               .btn-btn-default Comentar vino
 
-            #add_vino_to_listas_button.btn.btn-default(href="") + Mis listas
-            #add_vino_to_listas
+            %p
+            %a(href="#" id="dlabel" role="button" data-toggle="dropdown" class="dropdown-toggle" data-target="#")
+              = "Añadir vino a lista"
+              %b.caret
+            %ul.dropdown-menu(role="menu" aria-labelledby="dlabel")
+              %li
+                - @lists.each do |list|
+                  = button_to "#{ list.nombre }", vinos_lists_path, params: { vino_id: @vino.id, list_id: list.id }
 
-            :javascript
-              $(document).ready(function(){
-                $('#add_vino_to_listas_button').on('click', function(){
-                  $('#add_vino_to_listas').html("<% binding.pry %>");
-                  $('#add_vino_to_listas').html("<%= escape_javascript(render partial: 'lists/index') %>");
-                  $('#add_vino_to_listas').slideDown(350);
-                });
-              });              
-            / = button_to vinos_lists_path, remote:true, method: "post" do
-            /   .btn.btn-default(href="") + Mis listas
-
+     
 %section.reviews.container
   .row
     .col-sm-10.col-sm-offset-1
