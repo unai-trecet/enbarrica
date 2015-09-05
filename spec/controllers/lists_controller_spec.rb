@@ -3,11 +3,15 @@ require 'rails_helper'
 describe ListsController do 
   
   describe 'GET show' do
+    it 'sets list variable with the specified list by its id' do
+      lista = Fabricate :list
+      get :show, id: lista.id
 
+      expect(assigns :list).to eq(lista)
+    end
   end
 
-  describe 'GET new' do
-    
+  describe 'GET new' do    
     it 'sets @list variable' do
       xhr :get, :new
       expect(assigns :list).to be_instance_of List

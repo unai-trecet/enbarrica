@@ -1,6 +1,6 @@
-// $(document).ready(function(){
-//   $('#add_vino_to_listas_button').on('click', function(){
-//     $('#add_vino_to_listas').html("<%= escape_javascript(render 'lists/index') %>");
-//     $('#add_vino_to_listas').slideDown(350);
+// $(document).ready(function() {
+//   $('#boton_extiende_listas').on('click', function() {
+//     $("#listas_usuario").html("<%= escape_javascript(render 'prueba') %>");
+//     $('#listas_usuario').slideDown(350);
 //   });
 // });

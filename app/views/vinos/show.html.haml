@@ -53,14 +53,23 @@
             = button_to new_vino_comentario_path(@vino, @comentario), remote: true, method: "get" do
               .btn-btn-default Comentar vino
 
-            %p
-            %a(href="#" id="dlabel" role="button" data-toggle="dropdown" class="dropdown-toggle" data-target="#")
-              = "Añadir vino a lista"
-              %b.caret
-            %ul.dropdown-menu(role="menu" aria-labelledby="dlabel")
-              %li
-                - @lists.each do |list|
-                  = button_to "#{ list.nombre }", vinos_lists_path, params: { vino_id: @vino.id, list_id: list.id }
+            / %p
+            / %a(href="#" id="dlabel" role="button" data-toggle="dropdown" class="dropdown-toggle" data-target="#")
+            /   = "Añadir vino a lista"
+            /   %b.caret
+            / %ul.dropdown-menu(role="menu" aria-labelledby="dlabel")
+            /   %li
+            /     - @lists.each do |list|
+            /       = button_to "#{ list.nombre }", vinos_lists_path, params: { vino_id: @vino.id, list_id: list.id }
+
+            #boton_extiende_listas.btn.btn-default Añadir a lista
+            :javascript
+              $('#boton_extiende_listas').on('click', function() {
+                $("#listas_usuario").prepend("<%= escape_javascript(render 'prueba') %>");
+                $('#listas_usuario').slideDown(350);
+              });
+
+            #listas_usuario
 
      
 %section.reviews.container

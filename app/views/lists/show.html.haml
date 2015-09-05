@@ -1,0 +1,15 @@
+%table.table
+  %thead
+    %h1(width="30%") #{ @list.nombre }
+
+    %tr
+      %th(width="30%") Nombre
+      %th(width="15%") Bodega
+      / %th(width="15%") Valoracion
+  %tbody
+    - @list.vinos.each do |vino|
+      %tr
+        %td
+          = link_to "#{ vino.nombre }", vino_path(vino) 
+        %td
+          = link_to "#{ vino.bodega.nombre }", bodega_path(vino.bodega)

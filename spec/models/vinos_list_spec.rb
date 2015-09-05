@@ -7,4 +7,6 @@ describe VinosList do
 
   it { should validate_presence_of(:vino_id) }
   it { should validate_presence_of(:list_id) }  
+
+  # it { should validate_uniqueness_of(:vino_id) }
 end
